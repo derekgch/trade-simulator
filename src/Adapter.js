@@ -1,4 +1,4 @@
-const backendUrl="localhost:4000/"
+const backendUrl="http://localhost:4000/"
 
 
 
@@ -24,6 +24,21 @@ export function postUser(user){
     };
     return fetch(url,config).then(r => r.json())
 }
+
+export function postSessions(user){
+    const url = backendUrl+"sessions";
+    let config={
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/JSON',
+            'Data-Type': 'application/JSON'
+        },
+        body: JSON.stringify(user)
+    };
+    return fetch(url,config)
+
+}
+
 
 export function fetchStockQuote(symbol){
     const url = backendUrl+"api/stock/"+symbol

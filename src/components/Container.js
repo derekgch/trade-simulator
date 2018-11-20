@@ -7,7 +7,26 @@ import Trades from './Trades';
 import Portfolio from './Portfolio';
 
 class Container extends Component {
-    state = { activeItem: 'home' }
+    state = { 
+        activeItem: 'home',
+        userID:null,
+        userEmail:null,
+        balanace:null
+     }
+
+     componentDidMount(){
+
+     }
+
+     componentWillUnmount(){
+         this.setState({
+            activeItem: 'home',
+            userID:null,
+            userEmail:null,
+            balanace:null
+         })
+     }
+
     handleMenu=(name) => this.setState({ activeItem: name }, ()=>console.log(this.state.activeItem))
 
     displayContent=() =>{
@@ -22,10 +41,10 @@ class Container extends Component {
                 return < Trades />
 
             case "login":
-                return < Login />
+                return < Login backToHome={this.handleMenu}/>
 
             case "signup":
-                return < Signup />
+                return < Signup backToHome={this.handleMenu}/>
 
             default: 
                 return < Home />

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Segment, Message } from 'semantic-ui-react';
+import { postUser } from '../Adapter';
 
 class Signup extends Component {
     state={
-        email:'',
-        username:'',
-        password:'',
-        passwordReenter:''
+        email:'aba@ab.com',
+        username:'ab',
+        password:'ab',
+        passwordReenter:'ab',
+        message:null
     }
 
     componentWillUnmount(){
@@ -15,43 +17,70 @@ class Signup extends Component {
             username:'',
             password:'',
             passwordReenter:'',
-            error:true
+            message:""
         })
     }
 
     handleSumbit=(event)=>{
         event.preventDefault();
         console.log(this.state);
+        const {email , username, password, passwordReenter} = this.state;
+        let user ={
+            email,
+            username,
+            password
+        }
+        postUser(user).then(this.handleErrors).then( d => {
+            console.log(d)
+            if(d.token){
+                localStorage.setItem('token', d.token)
+                // this.props.history.push('/')
+                this.props.backToHome('home')
+            }else{
+                alert(Object.keys(d)+" "+ d[Object.keys(d)]);
+            }
+          }).catch((error)=> {
+            this.setState({message:"Email has been taken!"})
+            })
+    }
 
+    handleErrors(response) {
+        console.log(response)
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response;
     }
 
     handleInput = (event, { value, name })=>{
         // console.log(event.target, value, name)
-        let temp={};
-        temp[name] = value;
-        this.setState({...temp})
+        let message = null;
+        console.log(this.checkEmail())
+        if(this.checkEmail()){
+            message = "Email can not be blank!"
+        }else if(this.state.password ===""){
+            message = "Password can not be blank!"            
+        }else if(this.checkPassword()){            
+            message = "Your password doesn't match!"
+        }
+        // console.log(message)
+        this.setState({[name]:value, message})
     }
 
     displayMessage=()=>{
         let message1 = <Message color="red">
-            Password does not match!
+            {this.state.message}
             </Message>        
-        return this.state.passwordReenter !== "" && this.state.password!==this.state.passwordReenter ? message1: null;                 
+        return this.state.message? message1: null;                 
     }
 
-    checkPassword=()=>{
-        let message1 = <Message color="red">
-            Password can not be blank!
-            </Message>        
-        return this.state.password === "" ? message1: null;                 
+    checkPassword=()=>{       
+        return this.state.password!==this.state.passwordReenter;                 
     
     }
 
-    checkEmailMessage=()=>{
-        let message = <Message color="red">
-        Email address can not be blank!
-        </Message>
-    return this.state.email === ""? message: null;     
+    checkEmail=()=>{
+        return this.state.email === "";     
     }
 
     
@@ -107,8 +136,6 @@ class Signup extends Component {
                   </Segment>
                 </Form>
                 {this.displayMessage()}
-                {this.checkEmailMessage()}
-                {this.checkPassword()}
     
 
               </Grid.Column>
