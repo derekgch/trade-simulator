@@ -14,21 +14,21 @@ class Container extends Component {
         switch (this.state.activeItem) {
             case "home":
                 return < Home />
-                break;
+
             case "portfolio":
                 return < Portfolio />
-                break;
 
             case "trades":
                 return < Trades />
-                break;
 
             case "login":
                 return < Login />
-                break;
+
             case "signup":
                 return < Signup />
-                break;
+
+            default: 
+                return < Home />
         }
     }
 
