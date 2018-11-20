@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Menu, Segment, Button } from 'semantic-ui-react'
 
 class Navbar extends Component {
-    state = { activeItem: 'home' }
+    
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name }, ()=>console.log(this.state.activeItem))
+    handleItemClick = (e, { name }) => this.props.handleMenu(name)
     render() {
-        const { activeItem } = this.state
+        const { activeItem } = this.props
         return (
             <div>
             <Segment inverted>

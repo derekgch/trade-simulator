@@ -17,10 +17,10 @@ class Login extends Component {
                 height: 100%;
               }
             `}</style>
-            <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+            <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle' >
               <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as='h2' color='teal' textAlign='center'>
-                  <Image src='/logo.png' /> Log-in to your account
+                <Header as='h2' color='black' textAlign='center'>
+                   Please Login
                 </Header>
                 <Form size='large'>
                   <Segment stacked>
@@ -33,14 +33,12 @@ class Login extends Component {
                       type='password'
                     />
         
-                    <Button color='teal' fluid size='large'>
+                    <Button color='green' fluid size='large'>
                       Login
                     </Button>
                   </Segment>
                 </Form>
-                <Message>
-                  New to us? <a href='#'>Sign Up</a>
-                </Message>
+
               </Grid.Column>
             </Grid>
           </div>
