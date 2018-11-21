@@ -51,11 +51,16 @@ export function fetchUserInfo(token, userID){
     return fetch(url, config)
 }
 
+export function fetchStockPrice(symbol){
+    const url = backendUrl+"api/price/"+symbol
+        
+    return fetch(url)
+}
 
 export function fetchStockQuote(symbol){
     const url = backendUrl+"api/stock/"+symbol
         
-    return fetch(url).then(r => r.json())
+    return fetch(url)
 }
 
 export function sendTrade(trade, userID, token){
@@ -70,6 +75,6 @@ export function sendTrade(trade, userID, token){
             body: JSON.stringify(trade)
         };
 
-    return fetch(url, config).then(r => r.json())
+    return fetch(url, config)
     
 }
