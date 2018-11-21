@@ -9,7 +9,7 @@ import Portfolio from './Portfolio';
 
 class Container extends Component {
     state = { 
-        activeItem: 'home',
+        activeItem: 'portfolio',
         userID:null,
         userEmail:null,
         userName:null,
@@ -28,6 +28,7 @@ class Container extends Component {
 
      clearState=()=>{
         this.setState({
+            activeItem: 'home',
             userID:null,
             userEmail:null,
             userName:null,
@@ -82,6 +83,7 @@ class Container extends Component {
     }
 
     handleMenu=(name) => this.setState({ activeItem: name })
+    
 
     displayContent=() =>{
 
@@ -90,7 +92,10 @@ class Container extends Component {
                 return < Home />
 
             case "portfolio":
-                return < Portfolio />
+                return < Portfolio 
+                            balance={this.state.balance}
+                            userID={this.state.userID}
+                            stocks={this.state.stocks} />
 
             case "trades":
                 return < Trades />

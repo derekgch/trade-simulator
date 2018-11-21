@@ -4,10 +4,10 @@ import { postUser } from '../Adapter';
 
 class Signup extends Component {
     state={
-        email:'aba@ab.com',
-        username:'ab',
-        password:'ab',
-        passwordReenter:'ab',
+        email:'',
+        username:'',
+        password:'',
+        passwordReenter:'',
         message:null
     }
 
@@ -24,7 +24,7 @@ class Signup extends Component {
     handleSumbit=(event)=>{
         event.preventDefault();
         console.log(this.state);
-        const {email , username, password, passwordReenter} = this.state;
+        const {email , username, password} = this.state;
         let user ={
             email,
             username,
@@ -92,7 +92,7 @@ class Signup extends Component {
             <Grid textAlign='center' style={{ height: '100%'}} verticalAlign='middle' >
               <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as='h2' color='black' textAlign='center'>
-                   Please Sign Up
+                   Please Register
                 </Header>
                 <Form size='large'>
                   <Segment stacked>
