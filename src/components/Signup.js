@@ -35,7 +35,7 @@ class Signup extends Component {
             if(d.token){
                 localStorage.setItem('token', d.token)
                 // this.props.history.push('/')
-                this.props.backToHome('home')
+                this.props.backToHome()
             }else{
                 alert(Object.keys(d)+" "+ d[Object.keys(d)]);
             }

@@ -36,7 +36,19 @@ export function postSessions(user){
         body: JSON.stringify(user)
     };
     return fetch(url,config)
+}
 
+export function fetchUserInfo(token, userID){
+    const url = backendUrl+"/users/"+userID
+    let config={
+            method: 'GET', 
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/JSON',
+                'Data-Type': 'application/JSON'
+            },
+        };
+    return fetch(url, config)
 }
 
 

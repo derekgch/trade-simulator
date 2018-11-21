@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { fetchUserInfo } from '../Adapter';
 import NavBar from './Navbar';
 import Home from './Home';
 import Login from './Login';
@@ -11,25 +12,73 @@ class Container extends Component {
         activeItem: 'home',
         userID:null,
         userEmail:null,
-        balanace:null
+        userName:null,
+        stocks:[],
+        trades:[],
+        balance:null
      }
 
      componentDidMount(){
-
+        this.checkToken()
      }
 
      componentWillUnmount(){
-         this.setState({
-            activeItem: 'home',
+        this.clearState();
+     }
+
+     clearState=()=>{
+        this.setState({
             userID:null,
             userEmail:null,
-            balanace:null
+            userName:null,
+            stocks:[],
+            trades:[],
+            balance:null
          })
      }
 
-    handleMenu=(name) => this.setState({ activeItem: name }, ()=>console.log(this.state.activeItem))
+     handleErrors(response) {
+        // console.log(response)
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
+        return response.json();
+    }
+
+     checkToken=()=>{
+        let token = localStorage.getItem('token');
+        if(token){
+            this.parseToken(token)
+        }else{
+            this.clearState();
+        }
+     }
+
+     parseToken=(token)=>{
+         let userInfo = JSON.parse(atob(token.split(".")[1]))
+
+         fetchUserInfo(token, userInfo.id)
+            .then(this.handleErrors)
+            .then((data)=>this.setState({
+                userID:userInfo.id,
+                userEmail:userInfo.email,
+                userName:data.user,
+                stocks:data.stocks,
+                trades:data.trades,
+                balance:data.balance
+
+            }, ()=> console.log(this.state)))
+         console.log(userInfo)
+     }
+    
+    handleBackHome=()=>{
+        this.setState({activeItem:'home'}, ()=>this.checkToken())
+    }
+
+    handleMenu=(name) => this.setState({ activeItem: name })
 
     displayContent=() =>{
+
         switch (this.state.activeItem) {
             case "home":
                 return < Home />
@@ -41,10 +90,10 @@ class Container extends Component {
                 return < Trades />
 
             case "login":
-                return < Login backToHome={this.handleMenu}/>
+                return < Login backToHome={this.handleBackHome}/>
 
             case "signup":
-                return < Signup backToHome={this.handleMenu}/>
+                return < Signup backToHome={this.handleBackHome}/>
 
             default: 
                 return < Home />
@@ -60,6 +109,7 @@ class Container extends Component {
                 <NavBar 
                     handleMenu={this.handleMenu}
                     activeItem={this.state.activeItem}
+
                     />
                 
                 {this.displayContent()}

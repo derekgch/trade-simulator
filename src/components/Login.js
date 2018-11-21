@@ -30,7 +30,7 @@ class Login extends Component {
             console.log(d)
             if(d.token){
                 localStorage.setItem('token', d.token)
-                this.props.backToHome('home')
+                this.props.backToHome()
             }else{
                 alert(Object.keys(d)+" "+ d[Object.keys(d)]);
             }
