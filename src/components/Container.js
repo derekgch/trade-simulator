@@ -75,6 +75,12 @@ class Container extends Component {
         this.setState({activeItem:'home'}, ()=>this.checkToken())
     }
 
+    handleLogout=()=>{
+        localStorage.removeItem('token');
+        this.checkToken();
+        // console.log("logout")
+    }
+
     handleMenu=(name) => this.setState({ activeItem: name })
 
     displayContent=() =>{
@@ -109,6 +115,8 @@ class Container extends Component {
                 <NavBar 
                     handleMenu={this.handleMenu}
                     activeItem={this.state.activeItem}
+                    userName={this.state.userName}
+                    handleLogout={this.handleLogout}
 
                     />
                 
