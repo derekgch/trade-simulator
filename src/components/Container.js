@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchUserInfo } from '../Adapter';
+import { fetchUserInfo, handleErrors } from '../Adapter';
 import NavBar from './Navbar';
 import Home from './Home';
 import Login from './Login';
@@ -38,13 +38,15 @@ class Container extends Component {
          })
      }
 
-     handleErrors(response) {
-        // console.log(response)
-        if (!response.ok) {
-            throw Error(response.statusText);
-        }
-        return response.json();
-    }
+     afterTrade=(data)=>{
+         const userInfo={id:this.state.userID, email:this.state.userEmail};
+         this.saveDataToState(data, userInfo);
+
+        // console.log(data)
+        // this.setState(data)
+     }
+
+
 
      checkToken=()=>{
         let token = localStorage.getItem('token');
@@ -55,20 +57,24 @@ class Container extends Component {
         }
      }
 
+     saveDataToState=(data, userInfo)=>{
+        this.setState({
+            userID:userInfo.id,
+            userEmail:userInfo.email,
+            userName:data.user,
+            stocks:data.stocks,
+            trades:data.trades,
+            balance:data.balance
+
+        },()=> console.log(this.state))
+     }
+
      parseToken=(token)=>{
          let userInfo = JSON.parse(atob(token.split(".")[1]))
 
          fetchUserInfo(token, userInfo.id)
-            .then(this.handleErrors)
-            .then((data)=>this.setState({
-                userID:userInfo.id,
-                userEmail:userInfo.email,
-                userName:data.user,
-                stocks:data.stocks,
-                trades:data.trades,
-                balance:data.balance
-
-            }, ()=> console.log(this.state)))
+            .then(handleErrors)
+            .then((d)=> this.saveDataToState(d, userInfo))
          console.log(userInfo)
      }
     
@@ -95,7 +101,8 @@ class Container extends Component {
                 return < Portfolio 
                             balance={this.state.balance}
                             userID={this.state.userID}
-                            stocks={this.state.stocks} />
+                            stocks={this.state.stocks} 
+                            afterTrade={this.afterTrade}/>
 
             case "trades":
                 return < Trades />

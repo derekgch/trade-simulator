@@ -1,15 +1,13 @@
 const backendUrl="http://localhost:4000/"
 
 
-
-    // let config={
-    //         method: 'POST', 
-    //         headers: {
-    //             'Content-Type': 'application/JSON',
-    //             'Data-Type': 'application/JSON'
-    //         },
-    //         body: JSON.stringify({message: {real_name: "Test", message:"OK..sds.." }})
-    //     };
+export function handleErrors(response) {
+    // console.log(response)
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response.json();
+}
 
 
 export function postUser(user){
@@ -72,7 +70,7 @@ export function sendTrade(trade, userID, token){
                 'Content-Type': 'application/JSON',
                 'Data-Type': 'application/JSON'
             },
-            body: JSON.stringify(trade)
+            body: JSON.stringify({trade})
         };
 
     return fetch(url, config)

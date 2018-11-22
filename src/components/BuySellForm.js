@@ -9,11 +9,17 @@ class BuySellForm extends Component {
         quantity:0,
         message:null,
         price:null,
-        valid:false
+        valid:false,
+        buy:true
     }
 
     componentWillUnmount(){
         this.clearState();
+    }
+
+    //change buy to sell form
+    componentDidUpdate(prevProps, prevState){
+
     }
 
 
@@ -26,6 +32,8 @@ class BuySellForm extends Component {
             valid:false
         })
     }
+
+
     handleError=(r)=>{
         if(!r.ok) throw Error;
         return r.json();
@@ -45,11 +53,20 @@ class BuySellForm extends Component {
                 }
             }).catch((d)=>this.setState({valid:false, message:null}))
             
-    }, 500)
+    }, 300)
+
+
+    handleSumbit=()=>{
+        let total = this.state.price*this.state.quantity;
+
+        if(this.state.buy && total < this.props.balance && this.state.valid){
+            this.props.handleBuy(this.state.symbol, this.state.quantity, this.state.price)
+        }
+    }
     
 
     handleInput = (event, { value, name })=>{
-        // console.log(event.target, value, name)
+        // console.log(event.target.value, value, name)
         switch (name) {
             case "symbol":
                 this.getStockPrice();
@@ -57,7 +74,7 @@ class BuySellForm extends Component {
             case "quantity":
                 let regex = /[0-9]|\./;
                 if(regex.test(value))
-                    value= Math.round(value);
+                    value= parseInt(value);
                 else
                     value= "";
                 break;
@@ -86,8 +103,9 @@ class BuySellForm extends Component {
     displayTotal=()=>{
         let total = this.state.price*this.state.quantity;
         let color = total > this.props.balance ? "red" : "green"
+        let reminder = color ==="red" ? " Over your budget!" : null;
         let message1 = <Message color={color}>
-            Total Cost : ${total.toFixed(2)}
+            Total Cost : ${total.toFixed(2)} {reminder}
         </Message>        
     return this.state.valid? message1: null; 
     }
@@ -111,7 +129,7 @@ class BuySellForm extends Component {
                     iconPosition='left' 
                     placeholder='Stock Symbol' 
                     name="symbol"/>
-                    Amout of Shares:<Form.Input
+                    Number of Shares:<Form.Input
                       fluid
                       icon='circle'
                       iconPosition='left'
