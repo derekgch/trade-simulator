@@ -52,8 +52,8 @@ export function fetchUserInfo(token, userID){
     return fetch(url, config)
 }
 
-export function fetchStockPrice(symbol){
-    const url = backendUrl+"api/price/"+symbol
+export function fetchStockPrice(symbols){
+    const url = backendUrl+"api/price/"+symbols
         
     return fetch(url)
 }
