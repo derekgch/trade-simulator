@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
-import { Label, Table } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 class StockList extends Component {
 
     generateTables=()=>{
-        const cellColor = (status, price) => {
+        const cellColor = (openPrice, price) => {
+            let status = "";
+            if(price > openPrice) status="positive";
+            else if(price < openPrice) status="negative";
+
             switch (status) {
                 case "positive":
                     return <Table.Cell positive>{price}</Table.Cell>
                     
                 case "negative":
                     return <Table.Cell negative>{price}</Table.Cell>
-                    
-            
+        
                 default:
-                    return <Table.Cell>{price}</Table.Cell>
-                    
+                    return <Table.Cell>{price}</Table.Cell>       
             }
         }
        return this.props.stocks.map( e => {
+           console.log(e)
         return <Table.Row key={Date.now()+e.stock_symbol}>
             <Table.Cell>{e.stock_symbol}</Table.Cell>
             <Table.Cell>{e.quantity}</Table.Cell>
-            {cellColor(e.status,e.price)}
+            {cellColor(e.openPrice,e.price)}
             <Table.Cell>{(e.quantity*e.price).toFixed(2)}</Table.Cell>
         </Table.Row>
 
@@ -30,8 +33,11 @@ class StockList extends Component {
     }
 
     render() {
+        const total = this.props.stocks.length>1? this.props.stocks.reduce((acc,e)=>acc+ e.price*e.quantity , 0) : 0;
         return (
             <div className="stock-table">
+                <h2>Total Value: ${total}</h2>
+                
                   <Table celled>
                     <Table.Header>
                     <Table.Row>

@@ -1,5 +1,8 @@
 const backendUrl="http://localhost:4000/"
 
+//batch quotes
+//http://localhost:4000/api/batch/intc,fb
+//batch prices
 
 export function handleErrors(response) {
     // console.log(response)
@@ -56,8 +59,12 @@ export function fetchStockPrice(symbol){
 }
 
 export function fetchStockQuote(symbol){
-    const url = backendUrl+"api/stock/"+symbol
-        
+    const url = backendUrl+"api/stock/"+symbol       
+    return fetch(url)
+}
+
+export function fetchBatchQuote(symbols){
+    const url = backendUrl+"api/batch/"+symbols      
     return fetch(url)
 }
 
