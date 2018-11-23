@@ -9,7 +9,8 @@ class Portfolio extends Component {
         super(props, context);
         this.state={
             stocks:[],
-            latestPrice:{}
+            latestPrice:{},
+            validSell:false,
         }
     }
     componentDidMount(){
@@ -93,6 +94,19 @@ class Portfolio extends Component {
 
     }
 
+    checkSell=(symbol, n)=>{
+        let valid = false;
+        this.state.stocks.forEach( e=>{
+            // console.log(e.quantity,  n, symbol)
+            if(e.stock_symbol === symbol && e.quantity >= n && n >0){
+                // console.log("inside!!!!!")
+                valid = true;
+                return
+            }
+        })
+        this.setState({validSell:valid})
+    }
+
 
     render() {
         // console.log("portfolio",this.props.stocks, this.state.stocks)
@@ -116,6 +130,8 @@ class Portfolio extends Component {
                             handleSell={this.sellStock}
                             balance={this.props.balance}                            
                             selected = {null}
+                            validSell = {this.state.validSell}
+                            checkSell = {this.checkSell}
                         />
                     </Segment>
                     </Grid.Column>

@@ -10,7 +10,7 @@ class BuySellForm extends Component {
         message:null,
         price:null,
         valid:false,
-        buy:true
+        buy:true,
     }
 
     componentWillUnmount(){
@@ -63,7 +63,8 @@ class BuySellForm extends Component {
         // console.log(event.target.value, value, name)
         switch (name) {
             case "symbol":
-                this.getStockPrice();
+                if(value !== "")this.getStockPrice();
+                value=value.toUpperCase();
                 break;
             case "quantity":
                 let regex = /[0-9]|\./;
@@ -76,7 +77,20 @@ class BuySellForm extends Component {
             default:
                 break;
         }
-        this.setState({[name]:value})
+        this.setState({[name]:value}, ()=>this.props.checkSell(this.state.symbol, this.state.quantity))
+    }
+
+    buyButton=()=>{
+        if(this.state.valid && this.state.quantity > 0 && this.state.quantity*this.state.price < this.props.balance)
+            return <Button positive onClick={this.handleSumbit}>Buy</Button>
+        return <Button positive disabled onClick={this.handleSumbit}>Buy</Button>
+    }
+    sellButton=()=>{
+        // console.log("sell button", this.props.validSell)
+        if(this.props.validSell){
+            return <Button negative >Sell</Button>
+        }
+        return <Button negative disabled >Sell</Button>
     }
 
     displayMessage = () =>{
@@ -134,10 +148,16 @@ class BuySellForm extends Component {
                       value={quantity}
 
                     />
+
+                      <Button.Group fluid>
+                        {this.buyButton()}
+                        <Button.Or />
+                        {this.sellButton()}
+                    </Button.Group>
   
-                    <Button color='green' fluid size='medium' onClick={this.handleSumbit} position="right">
+                    {/* <Button color='green' fluid size='medium' onClick={this.handleSumbit} position="right">
                       Buy
-                    </Button>
+                    </Button> */}
                     
                   
                 </Form>
