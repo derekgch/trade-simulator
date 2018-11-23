@@ -41,11 +41,19 @@ class SearchForm extends Component {
         if(this.state.quote!==null && this.state.quote !=="Not Found"){
              var {high, low, companyName, latestPrice, change, latestTime} = this.state.quote;
         }
+        let arrow = change <0? "arrow down": "arrow up";
+        let color = change <0? "red": "green";
+        if(change === 0) {
+            color="black";
+            arrow = "";
+        }
+
+        const fontColor = {color}             
 
         return (
-            <Card fluid>
+            <Card fluid color={color} >
             <Card.Content>
-            <Card.Header >
+            <Card.Header style={fontColor}>
             <Form >
                 <Form.Group >
                     <Form.Input 
@@ -58,12 +66,12 @@ class SearchForm extends Component {
                     />
                 </Form.Group>
                 </Form>
-                Price: ${latestPrice} Change: ${change} Time: {latestTime}
+                Price: ${latestPrice} Change: ${change} <Icon name={arrow}/>
             </Card.Header>
             <Card.Meta>
                     <span >High:{high} Low:{low}</span>
                 </Card.Meta>
-                <Card.Description>Company: {companyName}</Card.Description>
+                <Card.Description>Company: {companyName},  {latestTime}</Card.Description>
             </Card.Content>
             </Card>
         );

@@ -20,14 +20,14 @@ class Home extends Component {
     }
 
     render() {
-        const name = this.props.userID ? this.props.username : "guest";
+        const userName = this.props.userID ? this.props.userName : "guest";
         const message =this.props.userID 
             ? "Today's snapshot:" 
             : "Please sign up or login for full functionalities.";
         return (
             <div className="home-page">
                 <h1>
-                    Welcome, {name}! 
+                    Welcome, {userName}! 
                 </h1>
                 <h3>
                     {message}

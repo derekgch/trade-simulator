@@ -9,7 +9,7 @@ import Portfolio from './Portfolio';
 
 class Container extends Component {
     state = { 
-        activeItem: 'portfolio',
+        activeItem: 'home',
         userID:null,
         userEmail:null,
         userName:null,
@@ -62,7 +62,7 @@ class Container extends Component {
         this.setState({
             userID:userInfo.id,
             userEmail:userInfo.email,
-            userName:data.user,
+            userName:data.user.charAt(0).toUpperCase() + data.user.slice(1),
             stocks:data.stocks,
             trades:data.trades,
             balance:data.balance
@@ -96,7 +96,10 @@ class Container extends Component {
 
         switch (this.state.activeItem) {
             case "home":
-                return < Home />
+                return < Home 
+                    userID={this.state.userID}
+                    userName={this.state.userName}
+                    />
 
             case "portfolio":
                 if(!this.state.userID) return < Home />;

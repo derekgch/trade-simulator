@@ -4,20 +4,16 @@ import { Table } from 'semantic-ui-react'
 class StockList extends Component {
 
     generateTables=()=>{
-        const cellColor = (openPrice, price) => {
-            let status = "";
-            if(price > openPrice) status="positive";
-            else if(price < openPrice) status="negative";
-
+        const cellColor = (status, value) => {
             switch (status) {
                 case "positive":
-                    return <Table.Cell positive>{price}</Table.Cell>
+                    return <Table.Cell positive>{value}</Table.Cell>
                     
                 case "negative":
-                    return <Table.Cell negative>{price}</Table.Cell>
+                    return <Table.Cell negative>{value}</Table.Cell>
         
                 default:
-                    return <Table.Cell>{price}</Table.Cell>       
+                    return <Table.Cell>{value}</Table.Cell>       
             }
         }
        return this.props.stocks.map( e => {
@@ -27,14 +23,17 @@ class StockList extends Component {
             }else{
                 price = this.props.latestPrice[e.stock_symbol].price
             }
+            let status = "";
+            if(price > e.openPrice) status="positive";
+            else if(price < e.openPrice) status="negative";
         //    const price= Object.keys(this.props.latestPrice).length === 0 ? 0 : this.props.latestPrice[e.stock_symbol].price;
         //    console.log(e, this.props.latestPrice, price)
         return <Table.Row key={Date.now()+e.stock_symbol}>
-            <Table.Cell>{e.stock_symbol}</Table.Cell>
-            <Table.Cell>{e.quantity}</Table.Cell>
-            <Table.Cell>{e.openPrice}</Table.Cell>
-            {cellColor(e.openPrice,price)}
-            <Table.Cell>{(e.quantity*price).toFixed(2)}</Table.Cell>
+            {cellColor(status, e.stock_symbol)}
+            {cellColor(status, e.quantity)}
+            {cellColor(status, e.openPrice)}
+            {cellColor(status, price)}
+            {cellColor(status, (e.quantity*price).toFixed(2))}
         </Table.Row>
 
        })
@@ -77,11 +76,6 @@ class StockList extends Component {
                     </Table.Header>
 
                     <Table.Body>
-                    {/* <Table.Row>
-                        <Table.Cell negative>Cell</Table.Cell>
-                        <Table.Cell positive>Cell</Table.Cell>
-                        <Table.Cell>Cell</Table.Cell>
-                    </Table.Row> */}
                     {this.generateTables()}
                     </Table.Body>
                 </Table>
