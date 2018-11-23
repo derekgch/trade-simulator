@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Segment, Message } from 'semantic-ui-react';
-import { fetchStockQuote } from '../Adapter';
+import { Button, Form, Grid, Header, Message } from 'semantic-ui-react';
+import { fetchStockQuote, handleErrors } from '../Adapter';
 import debounce from 'lodash/debounce';
 
 class BuySellForm extends Component {
@@ -33,16 +33,10 @@ class BuySellForm extends Component {
         })
     }
 
-
-    handleError=(r)=>{
-        if(!r.ok) throw Error;
-        return r.json();
-    }
-
     getStockPrice=debounce(()=>{
         // console.log("get price!");
         fetchStockQuote(this.state.symbol)
-            .then(this.handleError)
+            .then(handleErrors)
             .then(data => {
                 if(data.head!== 404){
                     let message = "Company: "+data.companyName +" || Current Price: $" + data.latestPrice

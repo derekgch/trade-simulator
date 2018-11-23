@@ -50,7 +50,7 @@ class StockList extends Component {
             <div className="stock-table">
                 <h2>Total Value: ${this.total().toFixed(2)}</h2>
                 
-                  <Table celled>
+                  <Table >
                     <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Symbol</Table.HeaderCell>

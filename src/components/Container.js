@@ -90,7 +90,7 @@ class Container extends Component {
     }
 
     handleMenu=(name) => this.setState({ activeItem: name })
-    
+
 
     displayContent=() =>{
 
@@ -99,6 +99,7 @@ class Container extends Component {
                 return < Home />
 
             case "portfolio":
+                if(!this.state.userID) return < Home />;
                 return < Portfolio 
                             balance={this.state.balance}
                             userID={this.state.userID}
@@ -106,7 +107,10 @@ class Container extends Component {
                             afterTrade={this.afterTrade}/>
 
             case "trades":
-                return < Trades />
+                if(!this.state.userID) return < Home />;
+
+                return < Trades trades={this.state.trades}
+                        />
 
             case "login":
                 return < Login backToHome={this.handleBackHome}/>
