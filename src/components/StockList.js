@@ -21,11 +21,18 @@ class StockList extends Component {
             }
         }
        return this.props.stocks.map( e => {
-           const price= Object.keys(this.props.latestPrice).length === 0 ? 0 : this.props.latestPrice[e.stock_symbol].price;
+            let price = this.props.latestPrice[e.stock_symbol];
+            if(!price){
+                price = e.price;
+            }else{
+                price = this.props.latestPrice[e.stock_symbol].price
+            }
+        //    const price= Object.keys(this.props.latestPrice).length === 0 ? 0 : this.props.latestPrice[e.stock_symbol].price;
         //    console.log(e, this.props.latestPrice, price)
         return <Table.Row key={Date.now()+e.stock_symbol}>
             <Table.Cell>{e.stock_symbol}</Table.Cell>
             <Table.Cell>{e.quantity}</Table.Cell>
+            <Table.Cell>{e.openPrice}</Table.Cell>
             {cellColor(e.openPrice,price)}
             <Table.Cell>{(e.quantity*price).toFixed(2)}</Table.Cell>
         </Table.Row>
@@ -36,9 +43,17 @@ class StockList extends Component {
     total =() =>{
         if(Object.keys(this.props.latestPrice).length > 0 
             && this.props.stocks.length >0){
+            
+            // console.log()            
 
-            return this.props.stocks.reduce((acc,e)=>{                
-                return acc+ this.props.latestPrice[e.stock_symbol].price*e.quantity 
+            return this.props.stocks.reduce((acc,e)=>{   
+                let price = this.props.latestPrice[e.stock_symbol];
+                if(!price){
+                    price = e.price;
+                }else{
+                    price = this.props.latestPrice[e.stock_symbol].price
+                }
+                return acc+ price*e.quantity 
             }, 0);
         }
         return 0;
@@ -55,7 +70,8 @@ class StockList extends Component {
                     <Table.Row>
                         <Table.HeaderCell>Symbol</Table.HeaderCell>
                         <Table.HeaderCell>Shares</Table.HeaderCell>
-                        <Table.HeaderCell>Price($)</Table.HeaderCell>
+                        <Table.HeaderCell>Open($)</Table.HeaderCell>
+                        <Table.HeaderCell>Current($)</Table.HeaderCell>
                         <Table.HeaderCell>Value($)</Table.HeaderCell>
                     </Table.Row>
                     </Table.Header>

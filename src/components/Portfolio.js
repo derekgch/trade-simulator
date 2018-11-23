@@ -44,7 +44,7 @@ class Portfolio extends Component {
 
     getPrice=()=>{
         this.getOpenPrice();
-        this.updateLatestPrice();
+        // this.updateLatestPrice();
     }
     
     getOpenPrice=()=>{
@@ -52,6 +52,7 @@ class Portfolio extends Component {
         fetchBatchQuote(symbols)
             .then(handleErrors)
             .then(this.storePriceToState)
+            .then(this.updateLatestPrice)
             .catch(()=>console.log("fetchBathQuote ERROR!"))
     }
 
