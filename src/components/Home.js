@@ -12,11 +12,21 @@ class Home extends Component {
     }
 
     componentDidMount(){
+        this.getInfo();
+        this.interval= setInterval(this.getInfo , 5000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.interval)
+    }
+
+
+    getInfo=()=>{
         getFocus().then(handleErrors).then(data => this.setState({focus:data}))
         fetchBatchQuote(["DIA", "SPY", "IWM", "QQQ"])
             .then(handleErrors)
             .then(data => this.setState({etfs:data}))
-        
+            .catch(d=>console.log("Fetch ETFs ERROR!"))
     }
 
     render() {

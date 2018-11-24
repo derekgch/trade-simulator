@@ -17,12 +17,12 @@ class Portfolio extends Component {
     componentDidMount(){
         this.setState({stocks:this.props.stocks}, this.getPrice)
         //check price every 5 seconds
-        // this.getPriceInterval = setInterval(this.updateLatestPrice, 5000);
+        this.interval = setInterval(this.updateLatestPrice, 5000);
 
     }
 
     componentWillUnmount(){
-        // clearInterval(this.getPriceInterval);
+        clearInterval(this.interval);
         this.setState({
             stocks:[],
             latestPrice:{},

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Menu, Icon, Pagination } from 'semantic-ui-react';
+import { Table, Pagination } from 'semantic-ui-react';
 import { fetchUserHistory} from '../Adapter';
 
 
@@ -12,6 +12,14 @@ class Trades extends Component {
 
     componentDidMount(){
         this.getTrades();
+    }
+
+    componentWillUnmount(){
+        this.setState({
+            trades:[],
+            meta:{},
+            activePage:1,
+        })
     }
 
     handleErrors = (response)=>{
@@ -36,7 +44,7 @@ class Trades extends Component {
     }
 
     storeData=(data)=>{
-        this.setState({trades:data.trades, meta:data.meta, activePage:data.meta.current_page }, ()=>console.log(this.state))
+        this.setState({trades:data.trades, meta:data.meta, activePage:data.meta.current_page })
     }
 
     generateTables=()=>{
@@ -58,7 +66,7 @@ class Trades extends Component {
 
     handlePageSelect=(event, {activePage})=>{
         this.getTrades(activePage);
-        console.log(activePage)
+        // console.log(activePage)
     }
 
     topPages =(key)=>{
@@ -84,7 +92,7 @@ class Trades extends Component {
                         <Table.HeaderCell>Date</Table.HeaderCell>
                         <Table.HeaderCell>Symbol</Table.HeaderCell>
                         <Table.HeaderCell>Shares</Table.HeaderCell>
-                        <Table.HeaderCell>Price</Table.HeaderCell>
+                        <Table.HeaderCell>Price($)</Table.HeaderCell>
                         <Table.HeaderCell>Buy/Sell</Table.HeaderCell>
                     </Table.Row>
                     </Table.Header>

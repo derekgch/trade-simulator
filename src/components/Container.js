@@ -64,7 +64,7 @@ class Container extends Component {
             stocks:data.stocks,
             balance:data.balance
 
-        },()=> console.log(this.state))
+        },()=> console.log())
      }
 
      parseToken=(token)=>{
@@ -74,7 +74,7 @@ class Container extends Component {
             .then(handleErrors)
             .then((d)=> this.saveDataToState(d, userInfo))
             .catch(d=>console.log("TOKEN ERROR! CANT FETCH USER INFO!"))
-         console.log(userInfo)
+         console.log()
      }
     
     handleBackHome=()=>{
