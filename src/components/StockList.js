@@ -16,7 +16,9 @@ class StockList extends Component {
                     return <Table.Cell>{value}</Table.Cell>       
             }
         }
-       return this.props.stocks.map( e => {
+        const alphabeticOrder = (a,b) => a.stock_symbol.localeCompare(b.stock_symbol);
+
+       return this.props.stocks.sort(alphabeticOrder).map( e => {
             let price = this.props.latestPrice[e.stock_symbol];
             if(!price){
                 price = e.price;

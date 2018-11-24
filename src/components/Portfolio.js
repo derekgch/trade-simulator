@@ -16,12 +16,12 @@ class Portfolio extends Component {
     componentDidMount(){
         this.setState({stocks:this.props.stocks}, this.getPrice)
         //check price every 5 seconds
-        this.getPriceInterval = setInterval(this.updateLatestPrice, 5000);
+        // this.getPriceInterval = setInterval(this.updateLatestPrice, 5000);
 
     }
 
     componentWillUnmount(){
-        clearInterval(this.getPriceInterval);
+        // clearInterval(this.getPriceInterval);
     }
 
     //need to make a deep compare fn to check quantity change
@@ -82,15 +82,23 @@ class Portfolio extends Component {
     
     buyStock=(sym, quantity, price)=>{
         const token = localStorage.getItem('token');
-        const trade ={sym, quantity, price, action:"buy"};
+        const trade ={sym, quantity, price, action:"BUY"};
         sendTrade(trade, this.props.userID, token)
         .then(handleErrors)
         .then(this.props.afterTrade)
+        .then(()=>this.checkSell(sym, quantity))
         .catch(()=>console.log("ERROR!Transaction Failed!"))
         console.log("buystock")
     }
-    sellStock=()=>{
-        console.log("sell stock")
+    sellStock=(sym, quantity, price)=>{
+        console.log("sell stock", sym, quantity, price)
+        const token = localStorage.getItem('token');
+        const trade ={sym, quantity, price, action:"SELL"};
+        sendTrade(trade, this.props.userID, token)
+        .then(handleErrors)
+        .then(this.props.afterTrade)
+        .then(()=>this.checkSell(sym, quantity))
+        .catch(()=>console.log("ERROR!Transaction Failed!"))
 
     }
 

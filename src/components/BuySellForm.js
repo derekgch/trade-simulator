@@ -17,11 +17,6 @@ class BuySellForm extends Component {
         this.clearState();
     }
 
-    //change buy to sell form
-    componentDidUpdate(prevProps, prevState){
-
-    }
-
 
     clearState=()=>{
         this.setState({
@@ -50,12 +45,14 @@ class BuySellForm extends Component {
     }, 300)
 
 
-    handleSumbit=()=>{
+    handleBuySumbit=()=>{
         let total = this.state.price*this.state.quantity;
-
         if(this.state.buy && total < this.props.balance && this.state.valid){
-            this.props.handleBuy(this.state.symbol, this.state.quantity, this.state.price)
+            this.props.handleBuy(this.state.symbol, this.state.quantity, this.state.price);
         }
+    }
+    handleSellSubmit=()=>{
+        this.props.handleSell(this.state.symbol, this.state.quantity, this.state.price);
     }
     
 
@@ -81,14 +78,15 @@ class BuySellForm extends Component {
     }
 
     buyButton=()=>{
-        if(this.state.valid && this.state.quantity > 0 && this.state.quantity*this.state.price < this.props.balance)
-            return <Button positive onClick={this.handleSumbit}>Buy</Button>
-        return <Button positive disabled onClick={this.handleSumbit}>Buy</Button>
+        if(this.state.valid && this.state.quantity > 0 
+            && this.state.quantity*this.state.price < this.props.balance)
+            return <Button positive onClick={this.handleBuySumbit}>Buy</Button>
+        return <Button positive disabled >Buy</Button>
     }
     sellButton=()=>{
         // console.log("sell button", this.props.validSell)
         if(this.props.validSell){
-            return <Button negative >Sell</Button>
+            return <Button negative onClick={this.handleSellSubmit}>Sell</Button>
         }
         return <Button negative disabled >Sell</Button>
     }
