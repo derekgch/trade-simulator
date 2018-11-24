@@ -1,7 +1,11 @@
+
+
+
 .App {
   text-align: center;
+  background-color: rgb(225, 228, 222);
+  height:100vh
 }
-
 
 
 .signup-form {
@@ -16,9 +20,17 @@
   margin-top: 20vh;
   height: 100%;
 }
+
 .buy-sell-form{
   position: relative;
-  margin-top: 10vh;
+  margin-top: 20vh;
+  margin-right: 10vh;
   height: 100%;
+}
 
+.stock-table{
+  position: relative;
+  margin-top: 10vh;
+  margin-left: 10vh;
+  height: 100%;
 }

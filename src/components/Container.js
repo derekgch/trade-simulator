@@ -73,6 +73,7 @@ class Container extends Component {
          fetchUserInfo(token, userInfo.id)
             .then(handleErrors)
             .then((d)=> this.saveDataToState(d, userInfo))
+            .catch(d=>console.log("TOKEN ERROR! CANT FETCH USER INFO!"))
          console.log(userInfo)
      }
     

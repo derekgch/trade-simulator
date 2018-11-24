@@ -11,6 +11,7 @@ class Portfolio extends Component {
             stocks:[],
             latestPrice:{},
             validSell:false,
+            validBuy:false,
         }
     }
     componentDidMount(){
@@ -22,9 +23,15 @@ class Portfolio extends Component {
 
     componentWillUnmount(){
         // clearInterval(this.getPriceInterval);
+        this.setState({
+            stocks:[],
+            latestPrice:{},
+            validSell:false,
+            validBuy:false,
+        })
     }
 
-    //need to make a deep compare fn to check quantity change
+    //deep compare fn to check quantity change
     componentDidUpdate(prevProps, prevState){
         if(this.isUpdateNeeded(prevProps)){
             this.setState({ stocks:[...this.props.stocks]}, this.getPrice)
@@ -86,10 +93,11 @@ class Portfolio extends Component {
         sendTrade(trade, this.props.userID, token)
         .then(handleErrors)
         .then(this.props.afterTrade)
-        .then(()=>this.checkSell(sym, quantity))
+        .then(()=>this.validateButtons(sym, quantity, price))        
         .catch(()=>console.log("ERROR!Transaction Failed!"))
         console.log("buystock")
     }
+
     sellStock=(sym, quantity, price)=>{
         console.log("sell stock", sym, quantity, price)
         const token = localStorage.getItem('token');
@@ -97,12 +105,25 @@ class Portfolio extends Component {
         sendTrade(trade, this.props.userID, token)
         .then(handleErrors)
         .then(this.props.afterTrade)
-        .then(()=>this.checkSell(sym, quantity))
+        .then(()=>this.validateButtons(sym, quantity, price))
         .catch(()=>console.log("ERROR!Transaction Failed!"))
 
     }
 
-    checkSell=(symbol, n)=>{
+    validateButtons=(sym, quantity, price)=>{
+        this.validateBuy(sym, quantity, price);
+        this.validateSell(sym, quantity);
+    }
+
+    validateBuy=(symbol,n, price)=>{
+        if(n > 0 && n*price < this.props.balance && symbol !==""){
+            this.setState({validBuy:true});
+        }else{
+            this.setState({validBuy:false});
+        }
+    }
+
+    validateSell=(symbol, n)=>{
         let valid = false;
         this.state.stocks.forEach( e=>{
             // console.log(e.quantity,  n, symbol)
@@ -138,8 +159,10 @@ class Portfolio extends Component {
                             handleSell={this.sellStock}
                             balance={this.props.balance}                            
                             selected = {null}
+                            validBuy = {this.state.validBuy}
+                            validateBuy={this.validateBuy}
                             validSell = {this.state.validSell}
-                            validateSell = {this.checkSell}
+                            validateSell = {this.validateSell}
                         />
                     </Segment>
                     </Grid.Column>
