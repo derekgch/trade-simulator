@@ -1,33 +1,46 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
-import { fetchUserHistory, handleErrors} from '../Adapter';
+import { Table, Menu, Icon, Pagination } from 'semantic-ui-react';
+import { fetchUserHistory} from '../Adapter';
 
 
 class Trades extends Component {
     state={
-        trades:[]
+        trades:[],
+        meta:{},
+        activePage:1,
     }
 
     componentDidMount(){
         this.getTrades();
     }
 
-    getTrades=()=>{
+    handleErrors = (response)=>{
+            // console.log(response)
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    // console.log(response)
+    // console.log(response.headers.get('Link'))
+
+    // response.headers.forEach(function(val, key) { console.log(key + ' -> ' + val); });
+    return response.json();
+    }
+
+    getTrades=(page=1)=>{
         const token = localStorage.getItem('token');
 
-        fetchUserHistory(token, this.props.userID)
-            .then(handleErrors)
+        fetchUserHistory(token, this.props.userID, page)
+            .then(this.handleErrors)
             .then(this.storeData)
             .catch(()=> console.log("ERROR"))
     }
 
     storeData=(data)=>{
-        this.setState({trades:data.trades})
+        this.setState({trades:data.trades, meta:data.meta, activePage:data.meta.current_page }, ()=>console.log(this.state))
     }
 
     generateTables=()=>{
-        const compFn =(a,b) =>{ return b.created_at.localeCompare(a.created_at)}
-        return this.state.trades.sort(compFn).map(e=>{
+        return this.state.trades.map(e=>{
             // console.log(e);
             let {created_at, stock_symbol, quantity, price, action} = e;
 
@@ -42,6 +55,21 @@ class Trades extends Component {
         </Table.Row>
         })
     }
+
+    handlePageSelect=(event, {activePage})=>{
+        this.getTrades(activePage);
+        console.log(activePage)
+    }
+
+    topPages =(key)=>{
+        if(this.state.meta.total_pages && this.state.meta.total_pages > 1)
+            return <Pagination key={key} 
+                    onPageChange={this.handlePageSelect}
+                    defaultActivePage={this.state.meta.current_page} 
+                    totalPages={this.state.meta.total_pages} />
+
+        return null;
+    }
     
     render() {
         return (
@@ -49,7 +77,7 @@ class Trades extends Component {
                 <h2>
                 Trade History
                 </h2>
-
+                {this.topPages("top_pagination")}
                 <Table >
                     <Table.Header>
                     <Table.Row>
@@ -63,9 +91,11 @@ class Trades extends Component {
 
                     <Table.Body>
                         {this.state.trades.length>0 ? this.generateTables():null}
-
                     </Table.Body>
-                </Table>
+                    </Table>
+                    {this.topPages("down_pagination")}
+
+                    {/* {this.state.meta.totalPages === 1?null :this.bottomPages("999bottom_pagination")} */}
             </div>
         );
     }

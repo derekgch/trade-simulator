@@ -52,14 +52,14 @@ export function fetchUserInfo(token, userID){
     return fetch(url, config)
 }
 
-export function fetchUserHistory(token, userID){
-    const url = backendUrl+"/trades/"+userID
+export function fetchUserHistory(token, userID, page){
+    const url = backendUrl+"/trades/"+userID +"?page=" +page
     let config={
             method: 'GET', 
             headers: {
                 'Authorization': token,
                 'Content-Type': 'application/JSON',
-                'Data-Type': 'application/JSON'
+                'Data-Type': 'application/JSON',
             },
         };
     return fetch(url, config)
