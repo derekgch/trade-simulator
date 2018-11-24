@@ -14,7 +14,6 @@ class Container extends Component {
         userEmail:null,
         userName:null,
         stocks:[],
-        trades:[],
         balance:null
      }
 
@@ -33,7 +32,6 @@ class Container extends Component {
             userEmail:null,
             userName:null,
             stocks:[],
-            trades:[],
             balance:null
          })
      }
@@ -64,7 +62,6 @@ class Container extends Component {
             userEmail:userInfo.email,
             userName:data.user.charAt(0).toUpperCase() + data.user.slice(1),
             stocks:data.stocks,
-            trades:data.trades,
             balance:data.balance
 
         },()=> console.log(this.state))
@@ -112,7 +109,7 @@ class Container extends Component {
             case "trades":
                 if(!this.state.userID) return < Home />;
 
-                return < Trades trades={this.state.trades}
+                return < Trades userID={this.state.userID}
                         />
 
             case "login":

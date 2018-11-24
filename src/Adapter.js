@@ -52,6 +52,19 @@ export function fetchUserInfo(token, userID){
     return fetch(url, config)
 }
 
+export function fetchUserHistory(token, userID){
+    const url = backendUrl+"/trades/"+userID
+    let config={
+            method: 'GET', 
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/JSON',
+                'Data-Type': 'application/JSON'
+            },
+        };
+    return fetch(url, config)
+}
+
 export function fetchStockPrice(symbols){
     const url = backendUrl+"api/price/"+symbols
         

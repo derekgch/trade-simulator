@@ -1,11 +1,33 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react';
+import { fetchUserHistory, handleErrors} from '../Adapter';
 
 
 class Trades extends Component {
+    state={
+        trades:[]
+    }
+
+    componentDidMount(){
+        this.getTrades();
+    }
+
+    getTrades=()=>{
+        const token = localStorage.getItem('token');
+
+        fetchUserHistory(token, this.props.userID)
+            .then(handleErrors)
+            .then(this.storeData)
+            .catch(()=> console.log("ERROR"))
+    }
+
+    storeData=(data)=>{
+        this.setState({trades:data.trades})
+    }
+
     generateTables=()=>{
         const compFn =(a,b) =>{ return b.created_at.localeCompare(a.created_at)}
-        return this.props.trades.sort(compFn).map(e=>{
+        return this.state.trades.sort(compFn).map(e=>{
             // console.log(e);
             let {created_at, stock_symbol, quantity, price, action} = e;
 
@@ -40,7 +62,7 @@ class Trades extends Component {
                     </Table.Header>
 
                     <Table.Body>
-                        {this.props.trades.length>0 ? this.generateTables():null}
+                        {this.state.trades.length>0 ? this.generateTables():null}
 
                     </Table.Body>
                 </Table>
