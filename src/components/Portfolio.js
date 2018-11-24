@@ -139,7 +139,7 @@ class Portfolio extends Component {
                             balance={this.props.balance}                            
                             selected = {null}
                             validSell = {this.state.validSell}
-                            checkSell = {this.checkSell}
+                            validateSell = {this.checkSell}
                         />
                     </Segment>
                     </Grid.Column>

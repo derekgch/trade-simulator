@@ -10,7 +10,7 @@ class BuySellForm extends Component {
         message:null,
         price:null,
         valid:false,
-        buy:true,
+        buy:false,
     }
 
     componentWillUnmount(){
@@ -24,7 +24,8 @@ class BuySellForm extends Component {
             quantity:0,
             message:null,
             price:null,
-            valid:false
+            valid:false,
+            buy:false,
         })
     }
 
@@ -74,12 +75,25 @@ class BuySellForm extends Component {
             default:
                 break;
         }
-        this.setState({[name]:value}, ()=>this.props.checkSell(this.state.symbol, this.state.quantity))
+        this.setState({[name]:value}, this.validate);
     }
 
+    validate=()=>{
+        this.validateBuy();
+        this.props.validateSell(this.state.symbol, this.state.quantity);
+    }
+
+    validateBuy=()=>{
+        if(this.state.quantity > 0 && this.state.quantity*this.state.price < this.props.balance && this.state.symbol !==""){
+            this.setState({buy:true});
+        }else{
+            this.setState({buy:false});
+        }
+    }
+
+
     buyButton=()=>{
-        if(this.state.valid && this.state.quantity > 0 
-            && this.state.quantity*this.state.price < this.props.balance)
+        if(this.state.valid && this.state.buy)
             return <Button positive onClick={this.handleBuySumbit}>Buy</Button>
         return <Button positive disabled >Buy</Button>
     }

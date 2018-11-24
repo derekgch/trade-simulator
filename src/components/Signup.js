@@ -8,7 +8,8 @@ class Signup extends Component {
         username:'',
         password:'',
         passwordReenter:'',
-        message:null
+        message:null,
+        valid:false,
     }
 
     componentWillUnmount(){
@@ -17,7 +18,8 @@ class Signup extends Component {
             username:'',
             password:'',
             passwordReenter:'',
-            message:""
+            message:"",
+            valid:false,
         })
     }
 
@@ -55,7 +57,7 @@ class Signup extends Component {
     handleInput = (event, { value, name })=>{
         // console.log(event.target, value, name)
         let message = null;
-        console.log(this.checkEmail())
+        // console.log(this.checkEmail())
         if(this.checkEmail()){
             message = "Email can not be blank!"
         }else if(this.state.password ===""){
@@ -64,7 +66,16 @@ class Signup extends Component {
             message = "Your password doesn't match!"
         }
         // console.log(message)
-        this.setState({[name]:value, message})
+        this.setState({[name]:value, message}, this.validate)
+    }
+
+    validate=()=>{
+        if(this.state.email!=="" 
+            && this.state.password!=="" 
+            && this.state.password === this.state.passwordReenter)
+            this.setState({valid:true, message:""})
+        else
+            this.setState({valid:false})
     }
 
     displayMessage=()=>{
@@ -81,6 +92,14 @@ class Signup extends Component {
 
     checkEmail=()=>{
         return this.state.email === "";     
+    }
+
+    signupButton=()=>{
+        if(this.state.valid)
+            return <Button color='green' fluid size='large' onClick={this.handleSumbit}>Sign Up</Button>
+        else
+        return <Button disabled color='green' fluid size='large' onClick={this.handleSumbit}>Sign Up</Button>
+
     }
 
     
@@ -130,9 +149,7 @@ class Signup extends Component {
                       value={passwordReenter}
                     />
         
-                    <Button color='green' fluid size='large' onClick={this.handleSumbit}>
-                      Sign Up
-                    </Button>
+                    {this.signupButton()}
                   </Segment>
                 </Form>
                 {this.displayMessage()}

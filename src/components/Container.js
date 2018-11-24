@@ -9,7 +9,7 @@ import Portfolio from './Portfolio';
 
 class Container extends Component {
     state = { 
-        activeItem: 'portfolio',
+        activeItem: 'home',
         userID:null,
         userEmail:null,
         userName:null,
