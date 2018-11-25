@@ -127,7 +127,7 @@ class BuySellForm extends Component {
         return (
             <div className="buy-sell-form">
                  <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle' >
-              <Grid.Column style={{ maxWidth: 530 }}>
+              <Grid.Column style={{ maxWidth: 530, height:380 }}>
                 <Header as='h2' color='black' textAlign='center'>
                    Current Cash: ${balance}
                 </Header>

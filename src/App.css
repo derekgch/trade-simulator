@@ -47,3 +47,11 @@
   margin: 5vh;
 }
 
+.small-stock-chart{
+  position: relative;
+  left: 0;
+}
+.react-stockchart{
+  position: absolute;
+  left: 0;
+}

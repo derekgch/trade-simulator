@@ -100,6 +100,12 @@ export function sendTrade(trade, userID, token){
     return fetch(url, config)
 }
 
+export function getStock6m(symbol){
+    const url= `https://api.iextrading.com/1.0/stock/${symbol}/chart/6m`;
+    return fetch(url);
+
+}
+
 export function getFocus(){
     const url ='https://api.iextrading.com/1.0/stock/market/list/infocus';
     return fetch(url);

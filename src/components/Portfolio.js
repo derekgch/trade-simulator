@@ -3,6 +3,7 @@ import { Grid, Segment, Divider } from 'semantic-ui-react';
 import BuySellFrom from './BuySellForm';
 import { sendTrade, handleErrors,fetchBatchQuote, fetchStockPrice } from '../Adapter';
 import StockList from './StockList';
+import ChartContainer from './ChartContainer';
 
 class Portfolio extends Component {
     constructor(props, context) {
@@ -10,8 +11,10 @@ class Portfolio extends Component {
         this.state={
             stocks:[],
             latestPrice:{},
+            chartData:[],
             validSell:false,
             validBuy:false,
+            symbol:null,
         }
     }
     componentDidMount(){
@@ -117,9 +120,9 @@ class Portfolio extends Component {
 
     validateBuy=(symbol,n, price)=>{
         if(n > 0 && n*price < this.props.balance && symbol !==""){
-            this.setState({validBuy:true});
+            this.setState({validBuy:true, symbol});
         }else{
-            this.setState({validBuy:false});
+            this.setState({validBuy:false, symbol});
         }
     }
 
@@ -133,7 +136,7 @@ class Portfolio extends Component {
                 return
             }
         })
-        this.setState({validSell:valid})
+        this.setState({validSell:valid, symbol})
     }
 
 
@@ -165,6 +168,8 @@ class Portfolio extends Component {
                             validateSell = {this.validateSell}
                         />
                     </Segment>
+                    <ChartContainer symbol={this.state.symbol}/>
+
                     </Grid.Column>
                 </Grid>
                 
