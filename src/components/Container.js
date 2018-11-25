@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchUserInfo, handleErrors } from '../Adapter';
+import { fetchUserInfo, handleErrors, getSymbols  } from '../Adapter';
 import NavBar from './Navbar';
 import Home from './Home';
 import Login from './Login';
@@ -14,11 +14,13 @@ class Container extends Component {
         userEmail:null,
         userName:null,
         stocks:[],
-        balance:null
+        balance:null,
+        searchData:[]
      }
 
      componentDidMount(){
         this.checkToken()
+        this.getAllSymbols()
      }
 
      componentWillUnmount(){
@@ -34,6 +36,20 @@ class Container extends Component {
             stocks:[],
             balance:null
          })
+     }
+
+     getAllSymbols=()=>{
+        getSymbols()
+            .then(handleErrors)
+            .then(data=> this.setState({searchData: data.map(this.parseSymbols)}))
+            .catch(()=> console.log("FETCH SYMBOLS ERROR!!!"))
+     }
+
+     parseSymbols=(data)=>{
+         return {
+             title:data.symbol,
+             name:data.name
+         }
      }
 
      afterTrade=(data)=>{
@@ -97,6 +113,7 @@ class Container extends Component {
                 return < Home 
                     userID={this.state.userID}
                     userName={this.state.userName}
+                    searchData={this.state.searchData}
                     />
 
             case "portfolio":

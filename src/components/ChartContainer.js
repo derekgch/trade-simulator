@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import StockChart from './StockChart';
-import { getStock6m, handleErrors } from '../Adapter';
-import { parseData, getData } from '../Utility';
+
 
 class ChartContainer extends Component {
-    // state={
-    //     data:[],
-    // }
+
 
 
     shouldComponentUpdate(nextProps, nextState){

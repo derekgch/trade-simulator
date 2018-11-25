@@ -52,7 +52,7 @@ class Home extends Component {
 
                     <Grid.Column style={{margin:"inherit"}}>
                         <h2>Find Stock:</h2>
-                        <SearchForm />
+                        <SearchForm searchData={this.props.searchData}/>
 
                         <CardContainer etfs={this.state.etfs}/>
                     </Grid.Column>

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Card, Icon ,Form} from 'semantic-ui-react'
+import { Card, Icon} from 'semantic-ui-react'
 import debounce from 'lodash/debounce';
 import { fetchStockQuote, handleErrors } from '../Adapter';
+import AutoSearch from './AutoSearch';
 
 
 
@@ -35,6 +36,11 @@ class SearchForm extends Component {
             
     }, 300)
 
+    setSymbol=(symbol)=>{
+        // console.log("set symbol", symbol)
+        this.setState({symbol},this.getStockPrice)
+    }
+
 
     render() {
         // var high=0, low=0, companyName="", latestPrice=0, change=0, latestTime="";
@@ -54,7 +60,12 @@ class SearchForm extends Component {
             <Card fluid color={color} >
             <Card.Content>
             <Card.Header style={fontColor}>
-            <Form >
+            <AutoSearch 
+                searchData={this.props.searchData}
+                setSymbol={this.setSymbol}
+                />
+
+            {/* <Form >
                 <Form.Group >
                     <Form.Input 
                         width={6} 
@@ -65,7 +76,7 @@ class SearchForm extends Component {
                         onChange={this.handleChange}
                     />
                 </Form.Group>
-                </Form>
+                </Form> */}
                 Price: ${latestPrice} Change: ${change} <Icon name={arrow}/>
             </Card.Header>
             <Card.Meta>

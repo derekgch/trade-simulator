@@ -110,3 +110,8 @@ export function getFocus(){
     const url ='https://api.iextrading.com/1.0/stock/market/list/infocus';
     return fetch(url);
 }   
+
+export function getSymbols(){
+    const url = 'https://api.iextrading.com/1.0/ref-data/symbols'
+    return fetch(url);
+}
