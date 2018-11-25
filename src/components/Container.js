@@ -122,6 +122,7 @@ class Container extends Component {
                             balance={this.state.balance}
                             userID={this.state.userID}
                             stocks={this.state.stocks} 
+                            searchData={this.state.searchData}
                             afterTrade={this.afterTrade}/>
 
             case "trades":

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Message } from 'semantic-ui-react';
 import { fetchStockQuote, handleErrors } from '../Adapter';
 import debounce from 'lodash/debounce';
+import AutoSearch from './AutoSearch';
 
 class BuySellForm extends Component {
     state={
@@ -40,13 +41,13 @@ class BuySellForm extends Component {
     }
 
     getStockPrice=debounce(()=>{
-        console.log("get price!");
+        // console.log("get price!");
         fetchStockQuote(this.state.symbol)
             .then(handleErrors)
             .then(data => {
                 if(data.head!== 404){
                     let message = "Company: "+data.companyName +" || Current Price: $" + data.latestPrice
-                    console.log(data)
+                    // console.log(data)
                     this.setState({message, price:data.latestPrice, valid:true})
                 }else{
                     this.setState({valid:false,message:null})
@@ -67,6 +68,11 @@ class BuySellForm extends Component {
         this.props.handleSell(this.state.symbol, this.state.quantity, this.state.price);
     }
     
+    handleSearchInput=(value)=>{
+        if(value !== "")this.getStockPrice();
+        value=value.toUpperCase();
+        this.setState({symbol:value}, this.validate);
+    }
 
     handleInput = (event, { value, name })=>{
         // console.log(event.target.value, value, name)
@@ -146,12 +152,18 @@ class BuySellForm extends Component {
                 </Header>
                 <Form size='large'>
                   
-                    Stock Symbol:<Form.Input fluid icon={icon}
+                    {/* Stock Symbol:<Form.Input fluid icon={icon}
                     value={symbol} 
                     onChange={this.handleInput}
                     iconPosition='left' 
                     placeholder='Stock Symbol' 
-                    name="symbol"/>
+                    name="symbol"/> */}
+
+                    <AutoSearch fluid
+                        searchData={this.props.searchData}
+                        setSymbol={this.handleSearchInput}
+                    
+                    />
                     Number of Shares:<Form.Input
                       fluid
                       icon='circle'

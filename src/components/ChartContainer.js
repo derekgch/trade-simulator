@@ -6,27 +6,12 @@ class ChartContainer extends Component {
 
 
 
-    shouldComponentUpdate(nextProps, nextState){
-        // console.log(nextState.data.length !== this.state.length )
-        // console.log( "nextProps", nextProps, "thisprops", this.props, nextState.data.length,this.state.data.length)
+    shouldComponentUpdate(nextProps){
         if(nextProps.symbol !== this.props.symbol || nextProps.data.length !== this.props.data.length){
-            console.log("reCharted!!")
             return true;
         }
         return false;
     }
-
-    // getChartData=(symbol)=>{
-    //     console.log("gets called", symbol)
-    //     getStock6m(symbol)
-    //     .then(handleErrors)
-    //     .then( d=> {
-    //         let data = parseData(d);
-    //         // console.log(data)
-    //         this.setState({data})
-    //     })
-    //     .catch(e=>{console.log("invalid symbol")})
-    // }
 
 
     render() {

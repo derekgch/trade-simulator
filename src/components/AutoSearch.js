@@ -63,19 +63,16 @@ export default class SearchExampleStandard extends Component {
     const { isLoading, value, results } = this.state
     // console.log(this.props.searchData[0])
     return (
-      <Grid>
-        <Grid.Column width={6}>
-          <Search
+          <Search 
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
             onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
             results={results}
             value={value}
             resultRenderer={resultRenderer}
+            placeholder ="Search Stock Symbol"
             // {...this.props}
           />
-        </Grid.Column>
-      </Grid>
     )
   }
 }

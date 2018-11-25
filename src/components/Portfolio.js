@@ -190,6 +190,8 @@ class Portfolio extends Component {
                             validateBuy={this.validateBuy}
                             validSell = {this.state.validSell}
                             validateSell = {this.validateSell}
+                            searchData={this.props.searchData}
+
                         />
                     </Segment>
                     <ChartContainer symbol={this.state.symbol} data={this.state.chartData}/>
