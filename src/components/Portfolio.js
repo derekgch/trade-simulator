@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Divider } from 'semantic-ui-react';
 import BuySellFrom from './BuySellForm';
-import { sendTrade, handleErrors,fetchBatchQuote, fetchStockPrice } from '../Adapter';
+import { sendTrade, handleErrors,fetchBatchQuote, fetchStockPrice , getStock6m} from '../Adapter';
 import StockList from './StockList';
 import ChartContainer from './ChartContainer';
+import { parseData, getData } from '../Utility';
+
 
 class Portfolio extends Component {
     constructor(props, context) {
@@ -39,6 +41,12 @@ class Portfolio extends Component {
         if(this.isUpdateNeeded(prevProps)){
             this.setState({ stocks:[...this.props.stocks]}, this.getPrice)
         }
+        if(prevState.symbol !== this.state.symbol){
+            if(this.state.symbol !=="")
+                this.getChartData(this.state.symbol)
+            else 
+                this.setState({chartData:[]})
+        }   
     }
 
     isUpdateNeeded=(prevProps)=>{
@@ -50,6 +58,22 @@ class Portfolio extends Component {
                 changed=true;
         })
         return changed;
+    }
+
+
+    getChartData=(symbol)=>{
+        console.log("gets called", symbol)
+        getStock6m(symbol)
+        .then(handleErrors)
+        .then( d=> {
+            let data = parseData(d);
+            // console.log(data)
+            this.setState({chartData:data})
+        })
+        .catch(e=>{
+            this.setState({chartData:[]})
+            console.log("invalid symbol");
+        })
     }
 
 
@@ -168,7 +192,7 @@ class Portfolio extends Component {
                             validateSell = {this.validateSell}
                         />
                     </Segment>
-                    <ChartContainer symbol={this.state.symbol}/>
+                    <ChartContainer symbol={this.state.symbol} data={this.state.chartData}/>
 
                     </Grid.Column>
                 </Grid>

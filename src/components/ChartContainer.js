@@ -4,50 +4,44 @@ import { getStock6m, handleErrors } from '../Adapter';
 import { parseData, getData } from '../Utility';
 
 class ChartContainer extends Component {
-    state={
-        data:[],
-        symbol:"C"
-    }
-
-    componentDidMount(){
-        getData()
-        .then(d=> this.setState({data:d}))
-            
-        
-    }
-
-    // shouldComponentUpdate(nextProps, nextState){
-    //     if(nextProps.symbol !== this.props.symbol){
-    //         return true;
-    //     }
-    //     return false;
-    // }
-    // componentDidUpdate(nextProps){
-    //     if(nextProps.symbol !== this.props.symbol){
-
-    //     }
+    // state={
+    //     data:[],
     // }
 
-    getChartData=()=>{
-        getStock6m(this.state.symbol)
-        .then(handleErrors)
-        .then( d=> {
-            let data = parseData(d);
-            console.log(data)
-            this.setState({data})
-        })
-        // .then(d => this.setState({data:d}, ()=>console.log(this.state.data)))
+
+    shouldComponentUpdate(nextProps, nextState){
+        // console.log(nextState.data.length !== this.state.length )
+        // console.log( "nextProps", nextProps, "thisprops", this.props, nextState.data.length,this.state.data.length)
+        if(nextProps.symbol !== this.props.symbol || nextProps.data.length !== this.props.data.length){
+            console.log("reCharted!!")
+            return true;
+        }
+        return false;
     }
+
+    // getChartData=(symbol)=>{
+    //     console.log("gets called", symbol)
+    //     getStock6m(symbol)
+    //     .then(handleErrors)
+    //     .then( d=> {
+    //         let data = parseData(d);
+    //         // console.log(data)
+    //         this.setState({data})
+    //     })
+    //     .catch(e=>{console.log("invalid symbol")})
+    // }
 
 
     render() {
-        console.log(this.state.data.length)
-		if (this.state.data.length < 1) {
+        console.log(this.props.data.length)
+		if (this.props.data.length < 1) {
 			return <div></div>
-		}
+        }
+        const {symbol} = this.props;
 		return (
             <div className="small-stock-chart" >
-			<StockChart data={this.state.data}/>
+            <h3>Stock Symbol:  {symbol}</h3>
+			<StockChart data={this.props.data} symbol={symbol}/>
             </div>
 		)
 	}

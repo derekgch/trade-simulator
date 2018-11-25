@@ -12,7 +12,12 @@ class BuySellForm extends Component {
         valid:false,
     }
 
+    componentDidMount(){
+        this.interval = setInterval(this.getPeriodicUpdate, 5000);
+    }
+
     componentWillUnmount(){
+        clearInterval(this.interval);
         this.clearState();
     }
 
@@ -27,8 +32,15 @@ class BuySellForm extends Component {
         })
     }
 
+    getPeriodicUpdate=()=>{
+        if(this.state.valid && this.state.symbol!==""){
+
+            this.getStockPrice()
+        }
+    }
+
     getStockPrice=debounce(()=>{
-        // console.log("get price!");
+        console.log("get price!");
         fetchStockQuote(this.state.symbol)
             .then(handleErrors)
             .then(data => {
@@ -50,6 +62,7 @@ class BuySellForm extends Component {
             this.props.handleBuy(this.state.symbol, this.state.quantity, this.state.price);
         }
     }
+
     handleSellSubmit=()=>{
         this.props.handleSell(this.state.symbol, this.state.quantity, this.state.price);
     }
@@ -117,7 +130,7 @@ class BuySellForm extends Component {
         let message1 = <Message color={color}>
             Total Cost : ${total.toFixed(2)} {reminder}
         </Message>        
-    return this.state.valid? message1: null; 
+        return this.state.valid? message1: null; 
     }
 
     render() {
@@ -156,10 +169,6 @@ class BuySellForm extends Component {
                         <Button.Or />
                         {this.sellButton()}
                     </Button.Group>
-  
-                    {/* <Button color='green' fluid size='medium' onClick={this.handleSumbit} position="right">
-                      Buy
-                    </Button> */}
                     
                   
                 </Form>
