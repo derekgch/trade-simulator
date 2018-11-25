@@ -4,9 +4,17 @@
 .App {
   text-align: center;
   background-color: rgb(225, 228, 222);
-  height:100vh
+  height:100%;
+  overflow-x: hidden;
+}
+/* 
+.portfolio-container{
+  height: 100vh;
 }
 
+.home-container{
+  height: 100vh;
+} */
 
 .signup-form {
   position: relative;
@@ -23,7 +31,7 @@
 
 .buy-sell-form{
   position: relative;
-  margin-top: 20vh;
+  margin-top: 10vh;
   margin-right: 10vh;
   height: 100%;
 }
@@ -34,3 +42,8 @@
   margin-left: 10vh;
   height: 100%;
 }
+
+.trades-table{
+  margin: 5vh;
+}
+

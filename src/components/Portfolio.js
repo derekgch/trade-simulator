@@ -140,7 +140,7 @@ class Portfolio extends Component {
     render() {
         // console.log("portfolio",this.props.stocks, this.state.stocks)
         return (
-            <div>
+            <div className="portfolio-container">
                 <Grid columns={2} relaxed>
                     <Grid.Column>
                     <Segment basic>

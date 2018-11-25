@@ -5,8 +5,9 @@ import Container from './components/Container'
 
 class App extends Component {
   render() {
+    const height = window.innerHeight;
     return (
-      <div className="App">
+      <div className="App" style={{height}}>
  
         <Container />
       </div>

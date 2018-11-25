@@ -8,8 +8,7 @@ class Navbar extends Component {
 
     displayButtons=()=>{
         const { activeItem } = this.props;
-        let login =  
-        <Menu.Item position='right'>
+        let login =  <Menu.Item position='right'>
                 <Button  
             name='signup' 
             active={activeItem === 'signup'}

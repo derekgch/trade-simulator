@@ -35,7 +35,7 @@ class Home extends Component {
             ? "Today's snapshot:" 
             : "Please sign up or login for full functionalities.";
         return (
-            <div className="home-page">
+            <div className="home-container">
                 <h1>
                     Welcome, {userName}! 
                 </h1>
@@ -50,7 +50,7 @@ class Home extends Component {
                     </Segment>
                     </Grid.Column>
 
-                    <Grid.Column>
+                    <Grid.Column style={{margin:"inherit"}}>
                         <h2>Find Stock:</h2>
                         <SearchForm />
 
