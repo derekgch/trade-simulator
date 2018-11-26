@@ -3,6 +3,19 @@
 ### For backend please check:
 https://github.com/derekgch/TTP-FS-20180728-backend
 
+<br>
++React as Front-end
+<br>
++Ruby on Rails as Back-end
+<br>
++JWT Oauth for security
+<br>
++Semantic-ui for CSS and design
+<br>
+React-Stockchart for chartings
+<br>
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
