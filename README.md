@@ -13,8 +13,11 @@ https://github.com/derekgch/TTP-FS-20180728-backend
 +Semantic-ui for CSS and design
 <br>
 React-Stockchart for chartings
+
+
+
+# Heroku Demo:
 <br>
-## Heroku Demo:
 Please allow 30 seconds for server to boot <br>
 https://ttp-fs-20180728-frontend.herokuapp.com/
 <br>
