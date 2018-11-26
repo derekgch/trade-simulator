@@ -8,11 +8,11 @@ https://github.com/derekgch/TTP-FS-20180728-backend
 <br>
 +Ruby on Rails as Back-end
 <br>
-+JWT Oauth for security
++JWT OAuth for security
 <br>
 +Semantic-ui for CSS and design
 <br>
-React-Stockchart for chartings
++React-Stockchart for chartings
 
 
 
@@ -24,6 +24,7 @@ https://ttp-fs-20180728-frontend.herokuapp.com/
 
 
 
+###
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
