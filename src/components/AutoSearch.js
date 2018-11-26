@@ -35,8 +35,6 @@ export default class SearchExampleStandard extends Component {
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value:value.toUpperCase() })
-    //call a props function to save value
-    // console.log(value)
     this.props.setSymbol(value);
 
     setTimeout(() => {
@@ -47,12 +45,12 @@ export default class SearchExampleStandard extends Component {
       const isMatchName = result => re.test(result.name)
 
 
-      const output = _.filter(this.props.searchData, isMatch).slice(0,7)
-      const outputName = _.filter(this.props.searchData, isMatchName).slice(0,5)
+      const output = _.filter(this.props.searchData, isMatch).slice(0,8)
+      const outputName = _.filter(this.props.searchData, isMatchName).slice(0,8)
 
       this.setState({
         isLoading: false,
-        results: arrayUnique([...output, ...outputName]),
+        results: arrayUnique([...output, ...outputName]).slice(0,8),
       })
     }, 300)
   }
@@ -63,7 +61,7 @@ export default class SearchExampleStandard extends Component {
     const { isLoading, value, results } = this.state
     // console.log(this.props.searchData[0])
     return (
-          <Search 
+          <Search fluid
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
             onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
@@ -71,6 +69,7 @@ export default class SearchExampleStandard extends Component {
             value={value}
             resultRenderer={resultRenderer}
             placeholder ="Search Stock Symbol"
+            input={{ icon: 'search', iconPosition: 'left' }}
             // {...this.props}
           />
     )

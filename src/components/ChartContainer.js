@@ -15,7 +15,7 @@ class ChartContainer extends Component {
 
 
     render() {
-        console.log(this.props.data.length)
+        // console.log(this.props.data.length)
 		if (this.props.data.length < 1) {
 			return <div></div>
         }

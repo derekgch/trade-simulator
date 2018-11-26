@@ -62,7 +62,7 @@ class Portfolio extends Component {
 
 
     getChartData=(symbol)=>{
-        console.log("gets called", symbol)
+        // console.log("gets called", symbol)
         getStock6m(symbol)
         .then(handleErrors)
         .then( d=> {

@@ -55,3 +55,7 @@
   position: absolute;
   left: 0;
 }
+
+.ui.input{
+  width: 100%;
+}
