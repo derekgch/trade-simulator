@@ -20,6 +20,7 @@ class Portfolio extends Component {
         }
     }
     componentDidMount(){
+        // console.log("props.stocks",this.props.stocks)
         this.setState({stocks:this.props.stocks}, this.getPrice)
         //check price every 5 seconds
         this.interval = setInterval(this.updateLatestPrice, 5000);

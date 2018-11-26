@@ -43,14 +43,17 @@ export default class SearchExampleStandard extends Component {
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
       const isMatch = result => re.test(result.title)
       const isMatchName = result => re.test(result.name)
-
-
+      const exactMatch = result => result.title === this.state.value
+      
       const output = _.filter(this.props.searchData, isMatch).slice(0,8)
       const outputName = _.filter(this.props.searchData, isMatchName).slice(0,8)
+      const excactOutput = _.filter(this.props.searchData, exactMatch)
+
+      const blurOuput = arrayUnique([...output, ...outputName]).slice(0,8);
 
       this.setState({
         isLoading: false,
-        results: arrayUnique([...output, ...outputName]).slice(0,8),
+        results: arrayUnique([...excactOutput, ...blurOuput])
       })
     }, 300)
   }
