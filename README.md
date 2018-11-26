@@ -14,6 +14,10 @@ https://github.com/derekgch/TTP-FS-20180728-backend
 <br>
 React-Stockchart for chartings
 <br>
+## Heroku Demo:
+Please allow 30 seconds for server to boot <br>
+https://ttp-fs-20180728-frontend.herokuapp.com/
+<br>
 
 
 
