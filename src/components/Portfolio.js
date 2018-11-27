@@ -43,9 +43,10 @@ class Portfolio extends Component {
             this.setState({ stocks:[...this.props.stocks]}, this.getPrice)
         }
         if(prevState.symbol !== this.state.symbol){
-            if(this.state.symbol !=="")
+            if(this.state.symbol !==""){
+                console.log(this.state.symbol)
                 this.getChartData(this.state.symbol)
-            else 
+            }else 
                 this.setState({chartData:[]})
         }   
     }
