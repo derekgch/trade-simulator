@@ -27,7 +27,7 @@ class ChartContainer extends Component {
 
     render() {
         // console.log(this.props.data.length)
-		if (this.props.data.length < 1) {
+		if (this.props.data.length < 1 || this.props.symbol == "") {
 			return <div></div>
         }
         const {symbol} = this.props;
