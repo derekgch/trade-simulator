@@ -1,5 +1,5 @@
-const backendUrl="http://localhost:4000/"
-// const backendUrl="https://ttp-fs-20180728-backend.herokuapp.com/"
+// const backendUrl="http://localhost:4000/"
+const backendUrl="https://ttp-fs-20180728-backend.herokuapp.com/"
 
 
 // https://ttp-fs-20180728-backend.herokuapp.com
