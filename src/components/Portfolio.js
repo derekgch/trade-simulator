@@ -5,6 +5,8 @@ import { sendTrade, handleErrors,fetchBatchQuote, fetchStockPrice , getStock6m} 
 import StockList from './StockList';
 import ChartContainer from './ChartContainer';
 import { parseData, getData } from '../Utility';
+import debounce from 'lodash/debounce';
+
 
 
 class Portfolio extends Component {
@@ -63,7 +65,7 @@ class Portfolio extends Component {
     }
 
 
-    getChartData=(symbol)=>{
+    getChartData=debounce((symbol)=>{
         // console.log("gets called", symbol)
         getStock6m(symbol)
         .then(handleErrors)
@@ -76,7 +78,7 @@ class Portfolio extends Component {
             this.setState({chartData:[]})
             console.log("invalid symbol");
         })
-    }
+    },300)
 
 
     getPrice=()=>{
