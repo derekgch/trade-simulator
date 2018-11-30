@@ -4,6 +4,7 @@ import { parseData } from '../Utility';
 import { handleErrors , getChart} from '../Adapter';
 import RangePicker from './RangePicker';
 import AutoSearch from './AutoSearch';
+import debounce from 'lodash/debounce';
 
 
 class MainChartContainer extends Component {
@@ -17,15 +18,15 @@ class MainChartContainer extends Component {
         this.getChartData(this.state.symbol)
     }
 
-    selectRange=()=>{
-
+    selectRange=(range)=>{
+        this.setState({range}, ()=>this.getChartData(this.state.symbol, range))
     }
 
     setSymbol=(symbol)=>{
         this.setState({symbol}, ()=>this.getChartData(this.state.symbol))
     }
 
-    getChartData=(symbol)=>{
+    getChartData= debounce((symbol)=>{
         // console.log("gets called", symbol)
         getChart(symbol)
         .then(handleErrors)
@@ -38,7 +39,7 @@ class MainChartContainer extends Component {
             this.setState({chartData:[]})
             console.log("invalid symbol");
         })
-    }
+    }, 500)
 
 
     render() {
