@@ -1,8 +1,8 @@
-# TTP-FS-20180728
-### This is React Frontend for TTP-FS-20180728
-### For backend please check:
-https://github.com/derekgch/TTP-FS-20180728-backend
+# Trade-simulater
+Allow users do simulated Buy and sell stocks at real time stock price, analysis of interested stocks and search for stock symbols
 
+
+## Techonlogies used:
 <br>
 +React as Front-end
 <br>
@@ -13,14 +13,6 @@ https://github.com/derekgch/TTP-FS-20180728-backend
 +Semantic-ui for CSS and design
 <br>
 +React-Stockchart for chartings
-
-
-
-# Heroku Demo:
-<br>
-Please allow 30 seconds for server to boot <br>
-https://ttp-fs-20180728-frontend.herokuapp.com/
-<br>
 
 
 
@@ -69,4 +61,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-# ttp-fs-20180728-frontend
+
