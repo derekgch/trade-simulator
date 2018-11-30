@@ -1,6 +1,9 @@
 # Trade-simulater
 Allow users do simulated buy and sell stocks at real time stock price, analysis of interested stocks and search for stock symbols
 
+## Demo Page: 
+#### Please allow 30s for backend heroku to boot
+https://derekgch.github.io/trade-simulator/
 
 ## Techonlogies used:
 <br>
