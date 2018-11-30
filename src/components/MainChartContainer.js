@@ -19,6 +19,7 @@ class MainChartContainer extends Component {
     }
 
     selectRange=(range)=>{
+        console.log("range", range)
         this.setState({range}, ()=>this.getChartData(this.state.symbol, range))
     }
 
@@ -26,9 +27,9 @@ class MainChartContainer extends Component {
         this.setState({symbol}, ()=>this.getChartData(this.state.symbol))
     }
 
-    getChartData= debounce((symbol)=>{
+    getChartData= debounce((symbol, range="6m")=>{
         // console.log("gets called", symbol)
-        getChart(symbol)
+        getChart(symbol, range)
         .then(handleErrors)
         .then( d=> {
             let data = parseData(d);
@@ -43,10 +44,10 @@ class MainChartContainer extends Component {
 
 
     render() {
+        // console.log( this.state.chartData.length)
         return (
             <div>
                 <AutoSearch    setSymbol={this.setSymbol}
-
                     searchData = {this.props.searchData}/>
 
                 {this.state.chartData.length > 0?

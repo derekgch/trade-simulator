@@ -105,7 +105,7 @@ export function getStock6m(symbol){
     return fetch(url);
 }
 
-export const chartRange = ["1d","1m","3m", "6m","ytd","1y","2y","5y"];
+export const chartRange = ["1m","3m", "6m","ytd","1y","2y"];
 export function getChart(symbol, range="6m"){
     if(chartRange.indexOf(range.toLowerCase()) == -1) range = "6m"
     const url= `https://api.iextrading.com/1.0/stock/${symbol}/chart/${range}`;
