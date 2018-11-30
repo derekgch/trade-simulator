@@ -6,6 +6,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Trades from './Trades';
 import Portfolio from './Portfolio';
+import MainChartContainer from './MainChartContainer';
 
 class Container extends Component {
     state = { 
@@ -124,7 +125,11 @@ class Container extends Component {
                             stocks={this.state.stocks} 
                             searchData={this.state.searchData}
                             afterTrade={this.afterTrade}/>
-
+            case "charts":
+                if(!this.state.userID) return < Home />;
+                return <MainChartContainer 
+                    searchData={this.state.searchData}
+                    />;
             case "trades":
                 if(!this.state.userID) return < Home />;
 

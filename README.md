@@ -1,5 +1,5 @@
 # Trade-simulater
-Allow users do simulated Buy and sell stocks at real time stock price, analysis of interested stocks and search for stock symbols
+Allow users do simulated buy and sell stocks at real time stock price, analysis of interested stocks and search for stock symbols
 
 
 ## Techonlogies used:

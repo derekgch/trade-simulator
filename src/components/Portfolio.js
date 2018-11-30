@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Divider } from 'semantic-ui-react';
 import BuySellFrom from './BuySellForm';
-import { sendTrade, handleErrors,fetchBatchQuote, fetchStockPrice , getStock6m} from '../Adapter';
+import { sendTrade, handleErrors,fetchBatchQuote, fetchStockPrice , getChart} from '../Adapter';
 import StockList from './StockList';
 import ChartContainer from './ChartContainer';
 import { parseData, getData } from '../Utility';
@@ -67,7 +67,7 @@ class Portfolio extends Component {
 
     getChartData=debounce((symbol)=>{
         // console.log("gets called", symbol)
-        getStock6m(symbol)
+        getChart(symbol)
         .then(handleErrors)
         .then( d=> {
             let data = parseData(d);

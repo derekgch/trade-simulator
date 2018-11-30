@@ -103,8 +103,13 @@ export function sendTrade(trade, userID, token){
 export function getStock6m(symbol){
     const url= `https://api.iextrading.com/1.0/stock/${symbol}/chart/6m`;
     return fetch(url);
-
 }
+
+export function getChart(symbol, range="6m"){
+    const url= `https://api.iextrading.com/1.0/stock/${symbol}/chart/${range}`;
+    return fetch(url);
+}
+
 
 export function getFocus(){
     const url ='https://api.iextrading.com/1.0/stock/market/list/infocus';

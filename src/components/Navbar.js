@@ -60,6 +60,11 @@ class Navbar extends Component {
                     onClick={this.handleItemClick}
                 />
                 <Menu.Item
+                    name='charts'
+                    active={activeItem === 'charts'}
+                    onClick={this.handleItemClick}
+                />
+                <Menu.Item
                     name='trades'
                     active={activeItem === 'trades'}
                     onClick={this.handleItemClick}
