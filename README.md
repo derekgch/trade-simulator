@@ -17,7 +17,8 @@ https://derekgch.github.io/trade-simulator/
 <br>
 +React-Stockchart for chartings
 
-
+## Ruby on Rails Backend:
+https://github.com/derekgch/trade-simulator-backend
 
 # Motivation
 Get a taste of real stock trading without the price and worries.
