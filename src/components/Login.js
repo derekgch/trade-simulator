@@ -4,8 +4,8 @@ import { postSessions } from '../Adapter';
 
 class Login extends Component {
     state={
-        email:"",
-        password:"",
+        email:"guest@guest.com",
+        password:"guest",
         message:null
     }
 

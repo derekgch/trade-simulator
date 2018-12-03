@@ -5,12 +5,10 @@ import { Grid } from 'semantic-ui-react'
 class CardContainer extends Component {
     
     render() {
-        // console.log(this.props.etfs)
+        console.log(this.props.etfs)
 
         return (
             <div>
-                
-
                 <h3>Major ETFs</h3>
                 <Grid columns={2}>
                     <Grid.Row>
