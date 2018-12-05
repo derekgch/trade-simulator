@@ -9,6 +9,7 @@ class Home extends Component {
     state={
         focus:[],
         etfs:[],
+        serverUP:false,
     }
 
     componentDidMount(){
@@ -25,7 +26,7 @@ class Home extends Component {
         getFocus().then(handleErrors).then(data => this.setState({focus:data}))
         fetchBatchQuote(["DIA", "SPY", "IWM", "QQQ"])
             .then(handleErrors)
-            .then(data => this.setState({etfs:data}))
+            .then(data => this.setState({etfs:data, serverUP:true}))
             .catch(d=>console.log("Fetch ETFs ERROR!"))
     }
 
@@ -34,6 +35,7 @@ class Home extends Component {
         const message =this.props.userID 
             ? "Today's snapshot:" 
             : "Please sign up or login for full functionalities.";
+        const herokuMessage = this.state.serverUP ? null : "Please allow 10s for heroku backend to boot.";
         return (
             <div className="home-container">
                 <h1>
@@ -41,6 +43,7 @@ class Home extends Component {
                 </h1>
                 <h3>
                     {message}
+                    {herokuMessage}
                 </h3>
 
                 <Grid columns={2} relaxed>

@@ -4,8 +4,8 @@ import { postSessions } from '../Adapter';
 
 class Login extends Component {
     state={
-        email:"guest@guest.com",
-        password:"guest",
+        email:"",
+        password:"",
         message:null
     }
 
@@ -37,6 +37,12 @@ class Login extends Component {
           }).catch((error)=> {
             this.setState({message:"Email/Password incorrect!"})
             })
+    }
+
+
+    handleGuestLogin=(event)=>{
+        event.preventDefault();
+        this.setState({email:"guest@guest.com", password:"guest"}, ()=>this.handleSumbit(event))        
     }
 
     handleErrors(response) {
@@ -92,6 +98,10 @@ class Login extends Component {
         
                     <Button color='green' fluid size='large' onClick={this.handleSumbit}>
                       Login
+                    </Button>
+                    <br></br>
+                    <Button color='blue' fluid size='large' onClick={this.handleGuestLogin}>
+                    Guest Demo Login
                     </Button>
                   </Segment>
                 </Form>
