@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/trade-simulator/precache-manifest.147d243026fd7cb581f9cf8e66400e30.js"
+  "/trade-simulator/precache-manifest.94921275d08e29595971bf1c53f52d95.js"
 );
 
 workbox.clientsClaim();
