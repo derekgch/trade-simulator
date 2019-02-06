@@ -59,3 +59,7 @@
 .ui.input{
   width: 100%;
 }
+
+div.ui.green.fluid.card{
+  top: 7px;
+}

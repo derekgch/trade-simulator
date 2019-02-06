@@ -53,9 +53,9 @@ class Home extends Component {
                     </Segment>
                     </Grid.Column>
 
-                    <Grid.Column style={{margin:"inherit"}}>
+                    <Grid.Column >
                         <h2>Find Stock:</h2>
-                        <SearchForm searchData={this.props.searchData}/>
+                        <SearchForm searchData={this.props.searchData} sytle={{top:"7px"}}/>
 
                         <CardContainer etfs={this.state.etfs}/>
                     </Grid.Column>
