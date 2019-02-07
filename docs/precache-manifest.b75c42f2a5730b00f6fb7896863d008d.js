@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/trade-simulator/static/media/icons.faff9214.woff"
   },
   {
-    "revision": "6cb2de4cf1214f9e1848",
-    "url": "/trade-simulator/static/css/main.0b3885fc.chunk.css"
+    "revision": "693e44bca6349f83b31c",
+    "url": "/trade-simulator/static/css/main.94318623.chunk.css"
   },
   {
     "revision": "a1a749e89f578a49306ec2b055c073da",
@@ -28,12 +28,12 @@ self.__precacheManifest = [
     "url": "/trade-simulator/static/media/outline-icons.ef60a4f6.woff"
   },
   {
-    "revision": "701ae6abd4719e9c2ada3535a497b341",
-    "url": "/trade-simulator/static/media/outline-icons.701ae6ab.eot"
-  },
-  {
     "revision": "9c74e172f87984c48ddf5c8108cabe67",
     "url": "/trade-simulator/static/media/flags.9c74e172.png"
+  },
+  {
+    "revision": "701ae6abd4719e9c2ada3535a497b341",
+    "url": "/trade-simulator/static/media/outline-icons.701ae6ab.eot"
   },
   {
     "revision": "ad97afd3337e8cda302d10ff5a4026b8",
@@ -44,8 +44,8 @@ self.__precacheManifest = [
     "url": "/trade-simulator/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "6cb2de4cf1214f9e1848",
-    "url": "/trade-simulator/static/js/main.6cb2de4c.chunk.js"
+    "revision": "693e44bca6349f83b31c",
+    "url": "/trade-simulator/static/js/main.693e44bc.chunk.js"
   },
   {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
@@ -56,12 +56,12 @@ self.__precacheManifest = [
     "url": "/trade-simulator/static/media/brand-icons.a046592b.woff"
   },
   {
-    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
-    "url": "/trade-simulator/static/media/icons.8e3c7f55.eot"
-  },
-  {
     "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
     "url": "/trade-simulator/static/media/icons.b87b9ba5.ttf"
+  },
+  {
+    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
+    "url": "/trade-simulator/static/media/icons.8e3c7f55.eot"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
@@ -84,7 +84,7 @@ self.__precacheManifest = [
     "url": "/trade-simulator/static/css/1.166c5fc3.chunk.css"
   },
   {
-    "revision": "122be5cbd88a0d66d6bd6fe2790c5e3a",
+    "revision": "2cc2a7400ac1e7af0e0b732f5966c885",
     "url": "/trade-simulator/index.html"
   }
 ];
