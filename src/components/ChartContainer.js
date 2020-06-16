@@ -7,7 +7,6 @@ class ChartContainer extends Component {
 
 
     shouldComponentUpdate(nextProps){
-        // console.log(this.props.symbol, nextProps.symbol)
         if(nextProps.symbol !== this.props.symbol 
             || this.isDataChange(nextProps.data, this.props.data)){
             
@@ -26,7 +25,6 @@ class ChartContainer extends Component {
 
 
     render() {
-        // console.log(this.props.data.length)
 		if (this.props.data.length < 1 || this.props.symbol == "") {
 			return <div></div>
         }

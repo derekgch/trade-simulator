@@ -54,12 +54,8 @@ class Container extends Component {
      }
 
      afterTrade=(data)=>{
-         console.log("====afterTrade=====")
          const userInfo={id:this.state.userID, email:this.state.userEmail};
          this.saveDataToState(data, userInfo);
-
-        // console.log(data)
-        // this.setState(data)
      }
 
 
@@ -101,7 +97,6 @@ class Container extends Component {
     handleLogout=()=>{
         localStorage.removeItem('token');
         this.checkToken();
-        // console.log("logout")
     }
 
     handleMenu=(name) => this.setState({ activeItem: name })

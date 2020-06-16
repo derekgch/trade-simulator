@@ -28,7 +28,6 @@ export default class SearchExampleStandard extends Component {
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
 
   handleResultSelect = (e, { result }) => {
-    // console.log(result)
     this.setState({ value: result.title })
     this.props.setSymbol(result.title)
   }
@@ -62,7 +61,6 @@ export default class SearchExampleStandard extends Component {
 
   render() {
     const { isLoading, value, results } = this.state
-    // console.log(this.props.searchData[0])
     return (
           <Search fluid
             loading={isLoading}
@@ -73,7 +71,6 @@ export default class SearchExampleStandard extends Component {
             resultRenderer={resultRenderer}
             placeholder ="Search Stock Symbol"
             input={{ icon: 'search', iconPosition: 'left' }}
-            // {...this.props}
           />
     )
   }

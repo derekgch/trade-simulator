@@ -3,7 +3,6 @@ import { Card, Icon } from 'semantic-ui-react'
 
 class StockCard extends Component {
     render() {
-        // console.log(this.props.data)
         if(this.props.data){
             const {companyName, latestPrice, symbol, change, avgTotalVolume,high,low} = this.props.data.quote;
             let arrow = change <0? "arrow down": "arrow up";

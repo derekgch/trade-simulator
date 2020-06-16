@@ -8,7 +8,6 @@ import { v4 } from 'uuid';
 class RangePicker extends Component {
 
     handleClick=(event, {name})=>{
-        // console.log(name)
         this.props.selectRange(name);
     }
 

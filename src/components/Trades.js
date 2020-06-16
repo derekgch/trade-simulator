@@ -23,14 +23,9 @@ class Trades extends Component {
     }
 
     handleErrors = (response)=>{
-            // console.log(response)
     if (!response.ok) {
         throw Error(response.statusText);
     }
-    // console.log(response)
-    // console.log(response.headers.get('Link'))
-
-    // response.headers.forEach(function(val, key) { console.log(key + ' -> ' + val); });
     return response.json();
     }
 
@@ -49,11 +44,9 @@ class Trades extends Component {
 
     generateTables=()=>{
         return this.state.trades.map(e=>{
-            // console.log(e);
             let {created_at, stock_symbol, quantity, price, action} = e;
 
             let estTime = new Date(created_at);
-            // console.log(estTime)
             return <Table.Row key ={Date.now()+stock_symbol+quantity+created_at}>
         <Table.Cell>{estTime.toDateString()}</Table.Cell>
         <Table.Cell>{stock_symbol}</Table.Cell>
@@ -66,7 +59,6 @@ class Trades extends Component {
 
     handlePageSelect=(event, {activePage})=>{
         this.getTrades(activePage);
-        // console.log(activePage)
     }
 
     topPages =(key)=>{

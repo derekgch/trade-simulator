@@ -30,7 +30,6 @@ class AreaChart extends React.Component {
         const { data, type, width, ratio, symbol } = this.props;
         const date = new Date(data[data.length -1].date);
         const beginDate = new Date(data[0].date);
-		// console.log(data)
 		return (
 			<ChartCanvas ratio={ratio} width={width} height={400}
 				margin={{ left: 50, right: 50, top: 10, bottom: 30 }}

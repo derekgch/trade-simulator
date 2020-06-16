@@ -17,17 +17,14 @@ class SearchForm extends Component {
     }
 
     handleChange=(event, {value})=>{
-        // console.log(value)
         this.setState({symbol:value.toUpperCase()}, this.getStockPrice);
     }
 
     getStockPrice = debounce(()=>{
-        // console.log("get price!");
         fetchStockQuote(this.state.symbol)
             .then(handleErrors)
             .then(data => {
                 if(data.head!== 404){
-                    // console.log(data)
                     this.setState({quote:data})
                 }else{
                     this.setState({quote:"Not Found"})
@@ -37,13 +34,11 @@ class SearchForm extends Component {
     }, 300)
 
     setSymbol=(symbol)=>{
-        // console.log("set symbol", symbol)
         this.setState({symbol},this.getStockPrice)
     }
 
 
     render() {
-        // var high=0, low=0, companyName="", latestPrice=0, change=0, latestTime="";
         if(this.state.quote!==null && this.state.quote !=="Not Found"){
              var {high, low, companyName, latestPrice, change, latestTime} = this.state.quote;
         }
@@ -64,19 +59,6 @@ class SearchForm extends Component {
                 searchData={this.props.searchData}
                 setSymbol={this.setSymbol}
                 />
-
-            {/* <Form >
-                <Form.Group >
-                    <Form.Input 
-                        width={6} 
-                        placeholder="Search Stock Symbols"
-                        icon='search'
-                        iconPosition='left'
-                        value={this.state.symbol}
-                        onChange={this.handleChange}
-                    />
-                </Form.Group>
-                </Form> */}
                 Price: ${latestPrice} Change: ${change} <Icon name={arrow}/>
             </Card.Header>
             <Card.Meta>

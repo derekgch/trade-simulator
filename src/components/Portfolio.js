@@ -22,10 +22,8 @@ class Portfolio extends Component {
         }
     }
     componentDidMount(){
-        // console.log("props.stocks",this.props.stocks)
         this.setState({stocks:this.props.stocks}, this.getPrice)
-        //check price every 5 seconds
-        this.interval = setInterval(this.updateLatestPrice, 5000);
+        this.interval = setInterval(this.updateLatestPrice, 50000);
 
     }
 
@@ -66,24 +64,21 @@ class Portfolio extends Component {
 
 
     getChartData=debounce((symbol)=>{
-        // console.log("gets called", symbol)
         getChart(symbol)
         .then(handleErrors)
         .then( d=> {
             let data = parseData(d);
-            // console.log(data)
             this.setState({chartData:data})
         })
         .catch(e=>{
             this.setState({chartData:[]})
             console.log("invalid symbol");
         })
-    },300)
+    },3000)
 
 
     getPrice=()=>{
         this.getOpenPrice();
-        // this.updateLatestPrice();
     }
     
     getOpenPrice=()=>{
@@ -91,31 +86,20 @@ class Portfolio extends Component {
         fetchBatchQuote(symbols)
             .then(handleErrors)
             .then(this.storePriceToState)
-            .then(this.updateLatestPrice)
             .catch(()=>console.log("fetchBathQuote ERROR!"))
     }
 
     storePriceToState=(data)=>{
-        // console.log(data)
         let result =[];
+        let latestPrice = {};
         this.state.stocks.forEach(e=>{
-            // console.log(data[e.stock_symbol].quote.open)
             result.push({...e, 
-                openPrice:data[e.stock_symbol].quote.open, 
+                openPrice:data[e.stock_symbol].quote.previousClose, 
                 price:data[e.stock_symbol].quote.latestPrice
             })
+            latestPrice[e.stock_symbol]={price:data[e.stock_symbol].quote.latestPrice}
         })
-        this.setState({stocks:result})
-    }
-
-    updateLatestPrice=()=>{
-        const symbols=this.state.stocks.map(e=>e.stock_symbol);
-
-        fetchStockPrice(symbols)
-            .then(handleErrors)
-            .then(data=>this.setState({latestPrice:data}))
-            .catch(console.log);
-        console.log("GET PRICE ONLY!");
+        this.setState({stocks:result, latestPrice})
     }
     
     buyStock=(sym, quantity, price)=>{
@@ -157,9 +141,7 @@ class Portfolio extends Component {
     validateSell=(symbol, n)=>{
         let valid = false;
         this.state.stocks.forEach( e=>{
-            // console.log(e.quantity,  n, symbol)
             if(e.stock_symbol === symbol && e.quantity >= n && n >0){
-                // console.log("inside!!!!!")
                 valid = true;
                 return
             }
@@ -169,7 +151,6 @@ class Portfolio extends Component {
 
 
     render() {
-        // console.log("portfolio",this.props.stocks, this.state.stocks)
         return (
             <div className="portfolio-container">
                 <Grid columns={2} relaxed>

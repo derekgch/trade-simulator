@@ -19,17 +19,16 @@ class StockList extends Component {
         const alphabeticOrder = (a,b) => a.stock_symbol.localeCompare(b.stock_symbol);
 
        return this.props.stocks.sort(alphabeticOrder).map( e => {
-            let price = this.props.latestPrice[e.stock_symbol];
+            let price 
             if(!price){
                 price = e.price;
             }else{
-                price = this.props.latestPrice[e.stock_symbol].price
+                price = this.props.latestPrice[e.stock_symbol].latestPrice
             }
             let status = "";
             if(price > e.openPrice) status="positive";
             else if(price < e.openPrice) status="negative";
-        //    const price= Object.keys(this.props.latestPrice).length === 0 ? 0 : this.props.latestPrice[e.stock_symbol].price;
-        //    console.log(e, this.props.latestPrice, price)
+
         return <Table.Row key={Date.now()+e.stock_symbol}>
             {cellColor(status, e.stock_symbol)}
             {cellColor(status, e.quantity)}
@@ -45,8 +44,6 @@ class StockList extends Component {
         if(Object.keys(this.props.latestPrice).length > 0 
             && this.props.stocks.length >0){
             
-            // console.log()            
-
             return this.props.stocks.reduce((acc,e)=>{   
                 let price = this.props.latestPrice[e.stock_symbol];
                 if(!price){
@@ -71,7 +68,7 @@ class StockList extends Component {
                     <Table.Row>
                         <Table.HeaderCell>Symbol</Table.HeaderCell>
                         <Table.HeaderCell>Shares</Table.HeaderCell>
-                        <Table.HeaderCell>Open($)</Table.HeaderCell>
+                        <Table.HeaderCell>Close($)</Table.HeaderCell>
                         <Table.HeaderCell>Current($)</Table.HeaderCell>
                         <Table.HeaderCell>Value($)</Table.HeaderCell>
                     </Table.Row>
