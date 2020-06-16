@@ -23,7 +23,7 @@ class Home extends Component {
 
 
     getInfo=()=>{
-        getFocus().then(handleErrors).then(data => this.setState({focus:data}))
+        getFocus().then(handleErrors).then(data => this.setState({focus:data})).catch( err => console.log("Error:", err))
         fetchBatchQuote(["DIA", "SPY", "IWM", "QQQ"])
             .then(handleErrors)
             .then(data => this.setState({etfs:data, serverUP:true}))

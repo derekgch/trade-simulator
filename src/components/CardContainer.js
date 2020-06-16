@@ -5,7 +5,6 @@ import { Grid } from 'semantic-ui-react'
 class CardContainer extends Component {
     
     render() {
-        console.log(this.props.etfs)
 
         return (
             <div>
