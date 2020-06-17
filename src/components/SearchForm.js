@@ -40,7 +40,7 @@ class SearchForm extends Component {
 
     render() {
         if(this.state.quote!==null && this.state.quote !=="Not Found"){
-             var {high, low, companyName, latestPrice, change, latestTime} = this.state.quote;
+             var {week52High, week52Low, companyName, latestPrice, change, latestTime} = this.state.quote;
         }
         let arrow = change <0? "arrow down": "arrow up";
         let color = change <0? "red": "green";
@@ -62,7 +62,7 @@ class SearchForm extends Component {
                 Price: ${latestPrice} Change: ${change} <Icon name={arrow}/>
             </Card.Header>
             <Card.Meta>
-                    <span >High:{high} Low:{low}</span>
+                    <span > 52-week High:{week52High} Low:{week52Low}</span>
                 </Card.Meta>
                 <Card.Description>Company: {companyName},  {latestTime}</Card.Description>
             </Card.Content>

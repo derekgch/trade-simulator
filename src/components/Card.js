@@ -4,7 +4,7 @@ import { Card, Icon } from 'semantic-ui-react'
 class StockCard extends Component {
     render() {
         if(this.props.data){
-            const {companyName, latestPrice, symbol, change, avgTotalVolume,high,low} = this.props.data.quote;
+            const {companyName, latestPrice, symbol, change, avgTotalVolume,week52High,week52Low} = this.props.data.quote;
             let arrow = change <0? "arrow down": "arrow up";
             let color = change <0? "red": "green";
             if(change === 0) {
@@ -21,7 +21,7 @@ class StockCard extends Component {
                     <Icon name={arrow} />
                 </Card.Header>
                 <Card.Meta>
-                    <span >High:{high} Low:{low}</span>
+                    <span >52-Week High:{week52High} Low:{week52Low}</span>
                 </Card.Meta>
                 <Card.Description>{companyName}</Card.Description>
                 </Card.Content>

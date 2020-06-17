@@ -58,7 +58,6 @@ class StockList extends Component {
     }
 
     render() {
-        // const total = this.props.stocks.length>1?  : 0;
         return (
             <div className="stock-table">
                 <h2>Total Value: ${this.total().toFixed(2)}</h2>
