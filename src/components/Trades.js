@@ -94,8 +94,6 @@ class Trades extends Component {
           </Table.Body>
         </Table>
         {this.topPages("down_pagination")}
-
-        {/* {this.state.meta.totalPages === 1?null :this.bottomPages("999bottom_pagination")} */}
       </div>
     );
   }

@@ -69,13 +69,6 @@ class Navbar extends Component {
               active={activeItem === 'trades'}
               onClick={this.handleItemClick}
             />
-            {/* <Menu.Item
-                    position='right'
-                    name='signup'
-                    active={activeItem === 'signup'}
-                    onClick={this.handleItemClick}
-                /> */}
-
             {this.displayButtons()}
           </Menu>
 
