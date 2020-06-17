@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f19a876a4622f48d138cbb6a14f8607b",
+    "revision": "d5857c50fe9ba3100744d3514c681f5c",
     "url": "/trade-simulator/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/trade-simulator/static/css/2.0d22d31e.chunk.css"
   },
   {
-    "revision": "700bb9b512d65d6aeccb",
+    "revision": "38b14714a86ed756eab8",
     "url": "/trade-simulator/static/css/main.b2498c36.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/trade-simulator/static/js/2.7de4f22a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "700bb9b512d65d6aeccb",
-    "url": "/trade-simulator/static/js/main.80a4b5d6.chunk.js"
+    "revision": "38b14714a86ed756eab8",
+    "url": "/trade-simulator/static/js/main.bb8486eb.chunk.js"
   },
   {
     "revision": "d2f209dd34ec197d860e",
