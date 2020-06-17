@@ -42,7 +42,7 @@ class Login extends Component {
 
     handleGuestLogin=(event)=>{
         event.preventDefault();
-        this.setState({email:"guest@guest.com", password:"guest"}, ()=>this.handleSumbit(event))        
+        this.setState({email:"guest@guest.com", password:"guest@guest.com"}, ()=>this.handleSumbit(event))        
     }
 
     handleErrors(response) {
