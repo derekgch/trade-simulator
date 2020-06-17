@@ -6,36 +6,36 @@ class ChartContainer extends Component {
 
 
 
-    shouldComponentUpdate(nextProps){
-        if(nextProps.symbol !== this.props.symbol 
-            || this.isDataChange(nextProps.data, this.props.data)){
-            
-                return true;
-        }
-        return false;
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.symbol !== this.props.symbol
+      || this.isDataChange(nextProps.data, this.props.data)) {
+
+      return true;
     }
+    return false;
+  }
 
-    isDataChange=(next, now)=>{
-        if(next.length !== now.length) return true;
-        if(next.length >0 && now.length >0)
-            if(next[0].close !== now[0].close)
-                return true;
-        return false;
+  isDataChange = (next, now) => {
+    if (next.length !== now.length) return true;
+    if (next.length > 0 && now.length > 0)
+      if (next[0].close !== now[0].close)
+        return true;
+    return false;
+  }
+
+
+  render() {
+    if (this.props.data.length < 1 || this.props.symbol === "") {
+      return <div></div>
     }
-
-
-    render() {
-		if (this.props.data.length < 1 || this.props.symbol === "") {
-			return <div></div>
-        }
-        const {symbol} = this.props;
-		return (
-            <div className="small-stock-chart" >
-            <h3>Stock Symbol:  {symbol}</h3>
-			<StockChart data={this.props.data} symbol={symbol}/>
-            </div>
-		)
-	}
+    const { symbol } = this.props;
+    return (
+      <div className="small-stock-chart" >
+        <h3>Stock Symbol:  {symbol}</h3>
+        <StockChart data={this.props.data} symbol={symbol} />
+      </div>
+    )
+  }
 }
 
 export default ChartContainer;

@@ -7,25 +7,25 @@ import { v4 } from 'uuid';
 
 class RangePicker extends Component {
 
-    handleClick=(event, {name})=>{
-        this.props.selectRange(name);
-    }
+  handleClick = (event, { name }) => {
+    this.props.selectRange(name);
+  }
 
-    generateButton =()=>{
-        return chartRange.map(e=>{
-            return <Button key={v4()} onClick={this.handleClick} name={e}>{e.toUpperCase()}</Button>
-        })
-    }
-    render() {
+  generateButton = () => {
+    return chartRange.map(e => {
+      return <Button key={v4()} onClick={this.handleClick} name={e}>{e.toUpperCase()}</Button>
+    })
+  }
+  render() {
 
-        return (
-            <div>
-                  <Button.Group>
-                    {this.generateButton()}
-                </Button.Group>
-            </div>
-        );
-    }
+    return (
+      <div>
+        <Button.Group>
+          {this.generateButton()}
+        </Button.Group>
+      </div>
+    );
+  }
 }
 
 export default RangePicker;

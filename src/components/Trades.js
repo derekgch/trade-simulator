@@ -1,104 +1,104 @@
 import React, { Component } from 'react';
 import { Table, Pagination } from 'semantic-ui-react';
-import { fetchUserHistory} from '../Adapter';
+import { fetchUserHistory } from '../Adapter';
 
 
 class Trades extends Component {
-    state={
-        trades:[],
-        meta:{},
-        activePage:1,
-    }
+  state = {
+    trades: [],
+    meta: {},
+    activePage: 1,
+  }
 
-    componentDidMount(){
-        this.getTrades();
-    }
+  componentDidMount() {
+    this.getTrades();
+  }
 
-    componentWillUnmount(){
-        this.setState({
-            trades:[],
-            meta:{},
-            activePage:1,
-        })
-    }
+  componentWillUnmount() {
+    this.setState({
+      trades: [],
+      meta: {},
+      activePage: 1,
+    })
+  }
 
-    handleErrors = (response)=>{
+  handleErrors = (response) => {
     if (!response.ok) {
-        throw Error(response.statusText);
+      throw Error(response.statusText);
     }
     return response.json();
-    }
+  }
 
-    getTrades=(page=1)=>{
-        const token = localStorage.getItem('token');
+  getTrades = (page = 1) => {
+    const token = localStorage.getItem('token');
 
-        fetchUserHistory(token, this.props.userID, page)
-            .then(this.handleErrors)
-            .then(this.storeData)
-            .catch(()=> console.log("ERROR"))
-    }
+    fetchUserHistory(token, this.props.userID, page)
+      .then(this.handleErrors)
+      .then(this.storeData)
+      .catch(() => console.log("ERROR"))
+  }
 
-    storeData=(data)=>{
-        this.setState({trades:data.trades, meta:data.meta, activePage:data.meta.current_page })
-    }
+  storeData = (data) => {
+    this.setState({ trades: data.trades, meta: data.meta, activePage: data.meta.current_page })
+  }
 
-    generateTables=()=>{
-        return this.state.trades.map(e=>{
-            let {created_at, stock_symbol, quantity, price, action} = e;
+  generateTables = () => {
+    return this.state.trades.map(e => {
+      let { created_at, stock_symbol, quantity, price, action } = e;
 
-            let estTime = new Date(created_at);
-            return <Table.Row key ={Date.now()+stock_symbol+quantity+created_at}>
+      let estTime = new Date(created_at);
+      return <Table.Row key={Date.now() + stock_symbol + quantity + created_at}>
         <Table.Cell>{estTime.toDateString()}</Table.Cell>
         <Table.Cell>{stock_symbol}</Table.Cell>
         <Table.Cell>{quantity}</Table.Cell>
         <Table.Cell>{price}</Table.Cell>
         <Table.Cell>{action}</Table.Cell>
-        </Table.Row>
-        })
-    }
+      </Table.Row>
+    })
+  }
 
-    handlePageSelect=(event, {activePage})=>{
-        this.getTrades(activePage);
-    }
+  handlePageSelect = (event, { activePage }) => {
+    this.getTrades(activePage);
+  }
 
-    topPages =(key)=>{
-        if(this.state.meta.total_pages && this.state.meta.total_pages > 1)
-            return <Pagination key={key} 
-                    onPageChange={this.handlePageSelect}
-                    defaultActivePage={this.state.meta.current_page} 
-                    totalPages={this.state.meta.total_pages} />
+  topPages = (key) => {
+    if (this.state.meta.total_pages && this.state.meta.total_pages > 1)
+      return <Pagination key={key}
+        onPageChange={this.handlePageSelect}
+        defaultActivePage={this.state.meta.current_page}
+        totalPages={this.state.meta.total_pages} />
 
-        return null;
-    }
-    
-    render() {
-        return (
-            <div className="trades-table">
-                <h2>
-                Trade History
+    return null;
+  }
+
+  render() {
+    return (
+      <div className="trades-table">
+        <h2>
+          Trade History
                 </h2>
-                {this.topPages("top_pagination")}
-                <Table >
-                    <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Date</Table.HeaderCell>
-                        <Table.HeaderCell>Symbol</Table.HeaderCell>
-                        <Table.HeaderCell>Shares</Table.HeaderCell>
-                        <Table.HeaderCell>Price($)</Table.HeaderCell>
-                        <Table.HeaderCell>Buy/Sell</Table.HeaderCell>
-                    </Table.Row>
-                    </Table.Header>
+        {this.topPages("top_pagination")}
+        <Table >
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Date</Table.HeaderCell>
+              <Table.HeaderCell>Symbol</Table.HeaderCell>
+              <Table.HeaderCell>Shares</Table.HeaderCell>
+              <Table.HeaderCell>Price($)</Table.HeaderCell>
+              <Table.HeaderCell>Buy/Sell</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
 
-                    <Table.Body>
-                        {this.state.trades.length>0 ? this.generateTables():null}
-                    </Table.Body>
-                    </Table>
-                    {this.topPages("down_pagination")}
+          <Table.Body>
+            {this.state.trades.length > 0 ? this.generateTables() : null}
+          </Table.Body>
+        </Table>
+        {this.topPages("down_pagination")}
 
-                    {/* {this.state.meta.totalPages === 1?null :this.bottomPages("999bottom_pagination")} */}
-            </div>
-        );
-    }
+        {/* {this.state.meta.totalPages === 1?null :this.bottomPages("999bottom_pagination")} */}
+      </div>
+    );
+  }
 }
 
 export default Trades;

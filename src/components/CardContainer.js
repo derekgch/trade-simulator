@@ -3,38 +3,38 @@ import Card from './Card';
 import { Grid } from 'semantic-ui-react'
 
 class CardContainer extends Component {
-    
-    render() {
 
-        return (
-            <div>
-                <h3>Major ETFs</h3>
-                <Grid columns={2}>
-                    <Grid.Row>
-                    <Grid.Column >
-                    <Card data ={this.props.etfs["IWM"]} />
-                    </Grid.Column>
+  render() {
 
-                    <Grid.Column>
-                    <Card data ={this.props.etfs["DIA"]}/>
-                    </Grid.Column>
-                    </Grid.Row>
+    return (
+      <div>
+        <h3>Major ETFs</h3>
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column >
+              <Card data={this.props.etfs["IWM"]} />
+            </Grid.Column>
 
-                    <Grid.Row>
-                    <Grid.Column>
-                    <Card data={this.props.etfs["SPY"]}/>
-                    </Grid.Column>
-                    <Grid.Column>
-                    <Card data={this.props.etfs["QQQ"]}/>
-                    </Grid.Column>
-                    </Grid.Row>
-                </Grid>
+            <Grid.Column>
+              <Card data={this.props.etfs["DIA"]} />
+            </Grid.Column>
+          </Grid.Row>
 
-                
-                
-            </div>
-        );
-    }
+          <Grid.Row>
+            <Grid.Column>
+              <Card data={this.props.etfs["SPY"]} />
+            </Grid.Column>
+            <Grid.Column>
+              <Card data={this.props.etfs["QQQ"]} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
+
+
+      </div>
+    );
+  }
 }
 
 export default CardContainer;

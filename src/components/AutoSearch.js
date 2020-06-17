@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 
 
-const resultRenderer = ({ title, name }) => <Label content={`${title+":"+name}`} />
+const resultRenderer = ({ title, name }) => <Label content={`${title + ":" + name}`} />
 
 resultRenderer.propTypes = {
   title: PropTypes.string,
@@ -13,11 +13,11 @@ resultRenderer.propTypes = {
 }
 
 export default class SearchExampleStandard extends Component {
-    state={
-        isLoading: false, 
-        results: [], 
-        value: '' 
-    }
+  state = {
+    isLoading: false,
+    results: [],
+    value: ''
+  }
 
   componentWillMount() {
     this.resetComponent()
@@ -31,7 +31,7 @@ export default class SearchExampleStandard extends Component {
   }
 
   handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value:value.toUpperCase() })
+    this.setState({ isLoading: true, value: value.toUpperCase() })
     this.props.setSymbol(value);
 
     setTimeout(() => {
@@ -41,12 +41,12 @@ export default class SearchExampleStandard extends Component {
       const isMatch = result => re.test(result.title)
       const isMatchName = result => re.test(result.name)
       const exactMatch = result => result.title === this.state.value
-      
-      const output = _.filter(this.props.searchData, isMatch).slice(0,8)
-      const outputName = _.filter(this.props.searchData, isMatchName).slice(0,8)
+
+      const output = _.filter(this.props.searchData, isMatch).slice(0, 8)
+      const outputName = _.filter(this.props.searchData, isMatchName).slice(0, 8)
       const excactOutput = _.filter(this.props.searchData, exactMatch)
 
-      const blurOuput = arrayUnique([...output, ...outputName]).slice(0,8);
+      const blurOuput = arrayUnique([...output, ...outputName]).slice(0, 8);
 
       this.setState({
         isLoading: false,
@@ -60,16 +60,16 @@ export default class SearchExampleStandard extends Component {
   render() {
     const { isLoading, value, results } = this.state
     return (
-          <Search fluid
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-            results={results}
-            value={value}
-            resultRenderer={resultRenderer}
-            placeholder ="Search Stock Symbol"
-            input={{ icon: 'search', iconPosition: 'left' }}
-          />
+      <Search fluid
+        loading={isLoading}
+        onResultSelect={this.handleResultSelect}
+        onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+        results={results}
+        value={value}
+        resultRenderer={resultRenderer}
+        placeholder="Search Stock Symbol"
+        input={{ icon: 'search', iconPosition: 'left' }}
+      />
     )
   }
 }
@@ -77,11 +77,11 @@ export default class SearchExampleStandard extends Component {
 
 function arrayUnique(array) {
   var a = array.concat();
-  for(var i=0; i<a.length; ++i) {
-      for(var j=i+1; j<a.length; ++j) {
-          if(a[i] === a[j])
-              a.splice(j--, 1);
-      }
+  for (var i = 0; i < a.length; ++i) {
+    for (var j = i + 1; j < a.length; ++j) {
+      if (a[i] === a[j])
+        a.splice(j--, 1);
+    }
   }
 
   return a;
