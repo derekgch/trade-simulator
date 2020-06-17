@@ -1,16 +1,26 @@
 {
-  "main.css": "/trade-simulator/static/css/main.94318623.chunk.css",
-  "main.js": "/trade-simulator/static/js/main.693e44bc.chunk.js",
-  "main.js.map": "/trade-simulator/static/js/main.693e44bc.chunk.js.map",
-  "static/css/1.166c5fc3.chunk.css": "/trade-simulator/static/css/1.166c5fc3.chunk.css",
-  "static/js/1.636707d2.chunk.js": "/trade-simulator/static/js/1.636707d2.chunk.js",
-  "static/js/1.636707d2.chunk.js.map": "/trade-simulator/static/js/1.636707d2.chunk.js.map",
-  "runtime~main.js": "/trade-simulator/static/js/runtime~main.26691410.js",
-  "runtime~main.js.map": "/trade-simulator/static/js/runtime~main.26691410.js.map",
-  "static/media/semantic.min.css": "/trade-simulator/static/media/brand-icons.a1a749e8.svg",
-  "static/css/main.94318623.chunk.css.map": "/trade-simulator/static/css/main.94318623.chunk.css.map",
-  "static/css/1.166c5fc3.chunk.css.map": "/trade-simulator/static/css/1.166c5fc3.chunk.css.map",
-  "index.html": "/trade-simulator/index.html",
-  "precache-manifest.b75c42f2a5730b00f6fb7896863d008d.js": "/trade-simulator/precache-manifest.b75c42f2a5730b00f6fb7896863d008d.js",
-  "service-worker.js": "/trade-simulator/service-worker.js"
+  "files": {
+    "main.css": "/trade-simulator/static/css/main.b2498c36.chunk.css",
+    "main.js": "/trade-simulator/static/js/main.80a4b5d6.chunk.js",
+    "main.js.map": "/trade-simulator/static/js/main.80a4b5d6.chunk.js.map",
+    "runtime-main.js": "/trade-simulator/static/js/runtime-main.0dbbfe7c.js",
+    "runtime-main.js.map": "/trade-simulator/static/js/runtime-main.0dbbfe7c.js.map",
+    "static/css/2.0d22d31e.chunk.css": "/trade-simulator/static/css/2.0d22d31e.chunk.css",
+    "static/js/2.7de4f22a.chunk.js": "/trade-simulator/static/js/2.7de4f22a.chunk.js",
+    "static/js/2.7de4f22a.chunk.js.map": "/trade-simulator/static/js/2.7de4f22a.chunk.js.map",
+    "index.html": "/trade-simulator/index.html",
+    "precache-manifest.d1af401223cddb27ec3b8f9c34cc88c3.js": "/trade-simulator/precache-manifest.d1af401223cddb27ec3b8f9c34cc88c3.js",
+    "service-worker.js": "/trade-simulator/service-worker.js",
+    "static/css/2.0d22d31e.chunk.css.map": "/trade-simulator/static/css/2.0d22d31e.chunk.css.map",
+    "static/css/main.b2498c36.chunk.css.map": "/trade-simulator/static/css/main.b2498c36.chunk.css.map",
+    "static/js/2.7de4f22a.chunk.js.LICENSE.txt": "/trade-simulator/static/js/2.7de4f22a.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/trade-simulator/static/media/outline-icons.ef60a4f6.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0dbbfe7c.js",
+    "static/css/2.0d22d31e.chunk.css",
+    "static/js/2.7de4f22a.chunk.js",
+    "static/css/main.b2498c36.chunk.css",
+    "static/js/main.80a4b5d6.chunk.js"
+  ]
 }
