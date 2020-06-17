@@ -1,5 +1,4 @@
 // const backendUrl="http://localhost:4000/"
-// const backendUrl="https://ttp-fs-20180728-backend.herokuapp.com/"
 const backendUrl="https://trade-simulator-backend.herokuapp.com/"
 
 //batch quotes
@@ -42,7 +41,7 @@ export function postSessions(user){
 }
 
 export function fetchUserInfo(token, userID){
-    const url = backendUrl+"/users/"+userID
+    const url = backendUrl+"users/"+userID
     let config={
             method: 'GET', 
             headers: {
@@ -55,7 +54,7 @@ export function fetchUserInfo(token, userID){
 }
 
 export function fetchUserHistory(token, userID, page){
-    const url = backendUrl+"/trades/"+userID +"?page=" +page
+    const url = backendUrl+"trades/"+userID +"?page=" +page
     let config={
             method: 'GET', 
             headers: {
@@ -84,7 +83,7 @@ export function fetchBatchQuote(symbols){
 }
 
 export function sendTrade(trade, userID, token){
-    const url = backendUrl+"/trades/"+userID
+    const url = backendUrl+"trades/"+userID
     let config={
             method: 'POST', 
             headers: {
@@ -97,17 +96,19 @@ export function sendTrade(trade, userID, token){
 
     return fetch(url, config)
 }
-
+    
+// const url= `https://cloud.iexapis.com/stable/stock/${symbol}/chart/${range}?token=`;
 export const chartRange = ["1m","3m", "6m","ytd","1y","2y"];
 export function getChart(symbol, range="6m"){
     if(chartRange.indexOf(range.toLowerCase()) === -1) range = "6m"
-    const url= `https://cloud.iexapis.com/stable/stock/${symbol}/chart/${range}?token=`;
+    const url = backendUrl+`api/chart/${symbol}/${range}`
     return fetch(url);
 }
 
 
 export function getFocus(){
-    const url ='https://cloud.iexapis.com/stable/stock/market/list/mostactive?token=';
+    // const url ='https://cloud.iexapis.com/stable/stock/market/list/mostactive?token=';
+    const url = backendUrl + 'api/active'
     return fetch(url);
 }   
 
