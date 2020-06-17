@@ -1,9 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import { Search, Grid} from 'semantic-ui-react'
+import { Search, Label } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
-import { Label } from 'semantic-ui-react'
-import { v4 } from 'uuid';
 
 
 

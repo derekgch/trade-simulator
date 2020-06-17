@@ -100,7 +100,7 @@ export function sendTrade(trade, userID, token){
 
 export const chartRange = ["1m","3m", "6m","ytd","1y","2y"];
 export function getChart(symbol, range="6m"){
-    if(chartRange.indexOf(range.toLowerCase()) == -1) range = "6m"
+    if(chartRange.indexOf(range.toLowerCase()) === -1) range = "6m"
     const url= `https://cloud.iexapis.com/stable/stock/${symbol}/chart/${range}?token=`;
     return fetch(url);
 }

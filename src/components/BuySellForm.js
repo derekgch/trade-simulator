@@ -140,8 +140,7 @@ class BuySellForm extends Component {
     }
 
     render() {
-        const {symbol, quantity} = this.state;
-        const icon = this.state.valid? "check" : "x";
+        const {quantity} = this.state;
         const balance = this.props.balance ? this.props.balance.toFixed(2) : 0;
         return (
             <div className="buy-sell-form">
@@ -151,13 +150,7 @@ class BuySellForm extends Component {
                    Current Cash: ${balance}
                 </Header>
                 <Form size='large'>
-                  
-                    {/* Stock Symbol:<Form.Input fluid icon={icon}
-                    value={symbol} 
-                    onChange={this.handleInput}
-                    iconPosition='left' 
-                    placeholder='Stock Symbol' 
-                    name="symbol"/> */}
+                
 
                     <AutoSearch fluid
                         searchData={this.props.searchData}

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Segment, Divider } from 'semantic-ui-react';
+import debounce from 'lodash/debounce';
 import BuySellFrom from './BuySellForm';
-import { sendTrade, handleErrors,fetchBatchQuote, fetchStockPrice , getChart} from '../Adapter';
+import { sendTrade, handleErrors,fetchBatchQuote , getChart} from '../Adapter';
 import StockList from './StockList';
 import ChartContainer from './ChartContainer';
-import { parseData, getData } from '../Utility';
-import debounce from 'lodash/debounce';
+import { parseData } from '../Utility';
 
 
 
