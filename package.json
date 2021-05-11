@@ -5,9 +5,9 @@
   "homepage": "https://derekgch.github.io/trade-simulator/",
   "dependencies": {
     "d3-time-format": "^2.3.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "^3.4.3",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-scripts": "^3.4.4",
     "react-stockcharts": "^0.7.8",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
@@ -29,6 +29,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "prettier": "^2.1.2"
+    "prettier": "^2.3.0"
   }
 }
